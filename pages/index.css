@@ -1,1 +1,4 @@
 @import url(../vendor/normalize.css);
+@import url(../blocks/page/page.css);
+/* последним шрифт */
+@import url(../vendor/fonts/InterWeb/inter.css);
