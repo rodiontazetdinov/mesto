@@ -2,5 +2,15 @@
 @import url(../blocks/page/page.css);
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
+@import url(../blocks/content/content.css);
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__person/profile__person.css);
+@import url(../blocks/profile/__job/profile__job.css);
+@import url(../blocks/profile/__edit/profile__edit.css);
+@import url(../blocks/wrapper/wrapper.css);
+@import url(../blocks/wrapper/__first-column/wrapper__first-column.css);
+@import url(../blocks/wrapper/__second-column/wrapper__second-column.css);
+@import url(../blocks/profile/__add-button/profile__add-button.css);
 /* последним шрифт */
 @import url(../vendor/fonts/InterWeb/inter.css);

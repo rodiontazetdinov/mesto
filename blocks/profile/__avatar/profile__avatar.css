@@ -2,3 +2,10 @@
     margin: 40px auto 0;
     display: block;
 }
+
+@media screen and (min-width: 900px) {
+    .profile__avatar {
+        margin: 40px 0 0;
+        padding-right: 30px;
+    }
+}
