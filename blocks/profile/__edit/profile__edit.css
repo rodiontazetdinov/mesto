@@ -1,0 +1,8 @@
+.profile__edit {
+    border: 0.1px solid #fff;
+    box-sizing: border-box;
+    padding: 3px;
+    position: absolute;
+    top: -17px;
+    left: 5px;
+}
