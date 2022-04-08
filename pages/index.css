@@ -12,5 +12,13 @@
 @import url(../blocks/wrapper/__first-column/wrapper__first-column.css);
 @import url(../blocks/wrapper/__second-column/wrapper__second-column.css);
 @import url(../blocks/profile/__add-button/profile__add-button.css);
+@import url(../blocks/cards/cards.css);
+@import url(../blocks/cards-list/cards-list.css);
+@import url(../blocks/cards-list/__card-container/cards-list__card-container.css);
+@import url(../blocks/cards-list/__card-image/cards-list__card-image.css);
+@import url(../blocks/cards-list/__like/cards-list__like.css);
+@import url(../blocks/cards-list/__name/cards-list__name.css);
+@import url(../blocks/cards-list/__bottom-wrapper/cards-list__bottom-wrapper.css);
+@import url(../blocks/cards-list/__top-wrapper/cards-list__top-wrapper.css);
 /* последним шрифт */
 @import url(../vendor/fonts/InterWeb/inter.css);

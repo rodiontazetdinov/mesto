@@ -1,0 +1,7 @@
+.cards-list__bottom-wrapper {
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
