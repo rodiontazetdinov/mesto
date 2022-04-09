@@ -1,3 +1,8 @@
 .cards-list__like {
     padding-right: 20px;
+    
+}
+
+.cards-list__like:hover {
+    opacity: 0.5;
 }
