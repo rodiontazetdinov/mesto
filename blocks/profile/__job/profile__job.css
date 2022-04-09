@@ -5,8 +5,7 @@
     line-height: 17px;
     text-align: center;
     margin: 0;
-    padding-top: 8px;
-    
+    padding-top: 8px; 
 }
 
 @media screen and (min-width: 900px) {

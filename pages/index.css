@@ -32,5 +32,4 @@
 @import url(../blocks/popup/__button/popup__button.css);
 @import url(../blocks/popup/__close/popup__close.css);
 @import url(../blocks/cards-list/__like/_active/cards-list__like_active.css);
-/* последним шрифт */
 @import url(../vendor/fonts/InterWeb/inter.css);
