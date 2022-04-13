@@ -2,9 +2,8 @@
     border: 0.1px solid #fff;
     box-sizing: border-box;
     padding: 6px;
-    position: absolute;
-    top: -25px;
-    left: 9px;
+    position: relative;
+    left: 6px;
 }
 
 .profile__edit:hover {
