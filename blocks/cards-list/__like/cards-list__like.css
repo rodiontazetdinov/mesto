@@ -1,5 +1,7 @@
 .cards-list__like {
     padding-right: 20px;
+    background: transparent;
+    border: none;
 }
 
 .cards-list__like:hover {

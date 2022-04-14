@@ -1,4 +1,5 @@
 @import url(../vendor/normalize.css);
+@import url(../vendor/fonts/InterWeb/inter.css);
 @import url(../blocks/page/page.css);
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
@@ -18,7 +19,7 @@
 @import url(../blocks/cards-list/__card-image/cards-list__card-image.css);
 @import url(../blocks/cards-list/__like/cards-list__like.css);
 @import url(../blocks/cards-list/__name/cards-list__name.css);
-@import url(../blocks/cards-list/__bottom-wrapper/cards-list__bottom-wrapper.css);
+@import url(../blocks/cards-list/__info/cards-list__info.css);
 @import url(../blocks/cards-list/__top-wrapper/cards-list__top-wrapper.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
@@ -31,5 +32,3 @@
 @import url(../blocks/popup/__job/popup__job.css);
 @import url(../blocks/popup/__button/popup__button.css);
 @import url(../blocks/popup/__close/popup__close.css);
-@import url(../blocks/cards-list/__like/_active/cards-list__like_active.css);
-@import url(../vendor/fonts/InterWeb/inter.css);

@@ -1,12 +1,11 @@
 .header {
     width: 100%;
-    border-bottom: 1px solid #545454;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 @media screen and (min-width: 900px) {
     .header {
         max-width: 880px;
-        border-bottom: 1px solid #545454;
         margin-right: auto;
         margin-left: auto;
     }

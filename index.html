@@ -16,14 +16,14 @@
             <img src="./images/avatar.png" alt="жак ив кусто" class="profile__avatar">
             <div class="wrapper">
                 <div class="wrapper__first-column">
-                    <p class="profile__person">Жак-Ив Кусто</p>
+                    <h1 class="profile__person">Жак-Ив Кусто</h1>
                     <p class="profile__job">Исследователь океана</p>
                 </div>
                 <div class="wrapper__second-column">
-                    <img src="./images/pencil-icon.svg" alt="редактировать" class="profile__edit">
+                    <button class="profile__edit" type="button"><img src="./images/pencil-icon.svg" alt="редактировать" ></button>
                 </div>
             </div>
-            <button class="profile__add-button"><img src="./images/plus_icon.svg" alt="добавить"></button>
+            <button class="profile__add-button" type="button"><img src="./images/plus_icon.svg" alt="добавить"></button>
         </section>
         <section class="cards">
             <ul class="cards-list">
@@ -31,36 +31,36 @@
                     <div class="cards-list__top-wrapper">
                         <img src="./images/liezen.jpg" alt="лиезен" class="cards-list__card-image">
                     </div>
-                    <div class="cards-list__bottom-wrapper">
-                        <p class="cards-list__name">Лиезен</p>
-                        <img src="./images/like_icon.svg" alt="лайк" class="cards-list__like">
+                    <div class="cards-list__info">
+                        <h2 class="cards-list__name">Лиезен</h2>
+                        <button type="button" class="cards-list__like"><img src="./images/like_icon.svg" alt="лайк"></button>
                     </div>
                 </li>
                 <li class="cards-list__card-container">
                     <div class="cards-list__top-wrapper">
                         <img src="./images/london.jpg" alt="лондон" class="cards-list__card-image">
                     </div>
-                    <div class="cards-list__bottom-wrapper">
-                        <p class="cards-list__name">Лондон</p>
-                        <img src="./images/like_icon.svg" alt="лайк" class="cards-list__like">
+                    <div class="cards-list__info">
+                        <h2 class="cards-list__name">Лондон</h2>
+                        <button type="button" class="cards-list__like"><img src="./images/like_icon.svg" alt="лайк"></button>
                     </div>
                 </li>
                 <li class="cards-list__card-container">
                     <div class="cards-list__top-wrapper">
                         <img src="./images/moscow.jpg" alt="москва" class="cards-list__card-image">
                     </div>
-                    <div class="cards-list__bottom-wrapper">
-                        <p class="cards-list__name">Москва</p>
-                        <img src="./images/like_icon.svg" alt="лайк" class="cards-list__like">
+                    <div class="cards-list__info">
+                        <h2 class="cards-list__name">Москва</h2>
+                        <button type="button" class="cards-list__like"><img src="./images/like_icon.svg" alt="лайк"></button>
                     </div>
                 </li>
                 <li class="cards-list__card-container">
                     <div class="cards-list__top-wrapper">
                         <img src="./images/new_york.jpg" alt="нью-йорк" class="cards-list__card-image">
                     </div>
-                    <div class="cards-list__bottom-wrapper">
-                        <p class="cards-list__name">Нью-Йорк</p>
-                        <img src="./images/like_icon.svg" alt="лайк" class="cards-list__like">
+                    <div class="cards-list__info">
+                        <h2 class="cards-list__name">Нью-Йорк</h2>
+                        <button type="button" class="cards-list__like"><img src="./images/like_icon.svg" alt="лайк"></button>
                     </div>
                 </li>
                 <li class="cards-list__card-container">
@@ -68,37 +68,38 @@
                         <img src="./images/sochi.jpg" alt="сочи" class="cards-list__card-image">
                     </div>
     
-                    <div class="cards-list__bottom-wrapper">
-                        <p class="cards-list__name">Сочи</p>
-                        <img src="./images/like_icon.svg" alt="лайк" class="cards-list__like">
+                    <div class="cards-list__info">
+                        <h2 class="cards-list__name">Сочи</h2>
+                        <button type="button" class="cards-list__like"><img src="./images/like_icon.svg" alt="лайк"></button>
                     </div>
                 </li>
                 <li class="cards-list__card-container">
                     <div class="cards-list__top-wrapper">
                         <img src="./images/zurich.jpg" alt="Цюрих" class="cards-list__card-image">
                     </div>
-                    <div class="cards-list__bottom-wrapper">
-                        <p class="cards-list__name">Цюрих</p>
-                        <img src="./images/like_icon.svg" alt="лайк" class="cards-list__like">
+                    <div class="cards-list__info">
+                        <h2 class="cards-list__name">Цюрих</h2>
+                        <button type="button" class="cards-list__like"><img src="./images/like_icon.svg" alt="лайк"></button>
                     </div>
                 </li>
             </ul>
         </section>
-        <footer class="footer">
-            <p class="footer__copyright">&copy; 2022 @rodiontazetdinov</p>
-        </footer>
     </main>
+    <footer class="footer">
+        <p class="footer__copyright">&copy; 2022 @rodiontazetdinov</p>
+    </footer>
+    
     <div class="popup">
         <div class="popup__container">
-            <form class="popup__form">
-                <label class="popup__title">Редактировать профиль</label>
-                <input class="popup__name" type="text" value="Жак-Ив Кусто">
-                <input class="popup__job" type="text" value="Исследователь океана">
-                <button class="popup__button">Сохранить</button>
-                <img src="./images/close_icon.svg" alt="закрыть" class="popup__close">
+            <form class="popup__form" name="profileEdit" method="post">
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <input class="popup__name" type="text" name="pofileName" placeholder="Имя">
+                <input class="popup__job" type="text" name="profileJob" placeholder="О себе">
+                <button class="popup__button" type="submit">Сохранить</button>
+                <button type="button" class="popup__close"><img src="./images/close_icon.svg" alt="закрыть" ></button>
             </form>
         </div>
     </div>
-    <script src="./js/index.js" defer></script>
+    <script src="./scripts/index.js" defer></script>
 </body>
 </html>
