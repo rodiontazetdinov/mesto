@@ -1,13 +1,11 @@
 .profile__edit {
-    border: 0.1px solid #fff;
-    box-sizing: border-box;
-    padding: 6px;
+    border: 1px solid #fff;
     position: relative;
-    left: 10px;
+    right: 17px;
     background: transparent;
-    width: 24px;
-    height: 24px;
-    bottom: 8px;
+    width: 18px;
+    height: 18px;
+    bottom: 3px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -15,4 +13,13 @@
 
 .profile__edit:hover {
     opacity: 0.6;
+}
+
+@media screen and (min-width: 900px) {
+    .profile__edit {
+        width: 24px;
+        height: 24px;
+        right: 11px;
+        bottom: 8px;
+    }
 }
