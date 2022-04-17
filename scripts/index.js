@@ -5,27 +5,32 @@ const popup = document.querySelector('.popup'),
       popupClose = document.querySelector('.popup__close'),
       formName = document.querySelector('.popup__name'),
       formJob = document.querySelector('.popup__job'),
-      saveBtn = document.querySelector('.popup__button'),
       personName = document.querySelector('.profile__person'),
-      personJob = document.querySelector('.profile__job');
+      personJob = document.querySelector('.profile__job'),
+      form = document.querySelector('.popup__form');
 
-editBtn.addEventListener('click', (event) => {
-    event.preventDefault();
+formName.value = 'Жак-Ив Кусто';
+formJob.value = 'Исследователь океана';
+
+function popupToggle() {
     popup.classList.toggle('popup_opened');
+}
+
+editBtn.addEventListener('click', () => {
+    popupToggle();
+    // popup.classList.toggle('popup_opened');
 });
 
-popupClose.addEventListener('click', (event) => {
-    event.preventDefault();
-    popup.classList.toggle('popup_opened');
+popupClose.addEventListener('click', () => {
+    popupToggle();
+    // popup.classList.toggle('popup_opened');
 });
 
-saveBtn.addEventListener('click', (event) => {
+form.addEventListener('submit', (event) => {
     event.preventDefault();
     if (formName.value && formJob.value) {
         personName.textContent = formName.value;
         personJob.textContent = formJob.value;
-        popup.classList.toggle('popup_opened');
-    } else {
-        popup.classList.toggle('popup_opened');
     }
+    popupToggle();
 });
