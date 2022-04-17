@@ -1,4 +1,5 @@
 .profile__job {
+    display: inline;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;

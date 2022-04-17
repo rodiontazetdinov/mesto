@@ -5,11 +5,21 @@
     font-size: 14px;
     line-height: 17px;
     color: #545454;
+    margin-left: 19px;
 }
 
 @media screen and (min-width: 450px) {
     .footer__copyright {
         font-size: 18px;
         line-height: 22px;
+        margin-left: 27px;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .footer__copyright {
+        font-size: 18px;
+        line-height: 22px;
+        margin-left: 0px;
     }
 }
