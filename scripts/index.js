@@ -9,28 +9,32 @@ const popup = document.querySelector('.popup'),
       personJob = document.querySelector('.profile__job'),
       form = document.querySelector('.popup__form');
 
-formName.value = 'Жак-Ив Кусто';
-formJob.value = 'Исследователь океана';
+
 
 function popupToggle() {
-    popup.classList.toggle('popup_opened');
+    if (popup.classList.contains('popup_opened')) {
+        popup.classList.remove('popup_opened');
+    } else {
+        popup.classList.add('popup_opened');
+        
+        formName.value = personName.textContent;
+        formJob.value = personJob.textContent;
+    }
 }
 
 editBtn.addEventListener('click', () => {
     popupToggle();
-    // popup.classList.toggle('popup_opened');
 });
 
 popupClose.addEventListener('click', () => {
     popupToggle();
-    // popup.classList.toggle('popup_opened');
 });
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
-    if (formName.value && formJob.value) {
-        personName.textContent = formName.value;
-        personJob.textContent = formJob.value;
-    }
+
+    personName.textContent = formName.value;
+    personJob.textContent = formJob.value;
+
     popupToggle();
 });
