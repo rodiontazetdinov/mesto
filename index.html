@@ -39,8 +39,19 @@
             </div>
         </li>
     </template>
-    
-    <div class="popup">
+    <template id="popup-template">
+        <div class="popup">
+            <form class="popup__form" name="profileEdit" method="post">
+                <h2 class="popup__title"></h2>
+                <input class="popup__name" type="text" name="pofileName" placeholder="">
+                <input class="popup__job" type="text" name="profileJob" placeholder="">
+                <button class="popup__button" type="submit"></button>
+                <button type="button" class="popup__close" aria-label="закрыть"><img src="./images/close_icon.svg" alt="иконка закрыть" class="popup__icon"></button>
+            </form>
+        </div>
+    </template>
+
+    <!-- <div class="popup">
         <form class="popup__form" name="profileEdit" method="post">
             <h2 class="popup__title">Редактировать профиль</h2>
             <input class="popup__name" type="text" name="pofileName" placeholder="Имя">
@@ -48,7 +59,7 @@
             <button class="popup__button" type="submit">Сохранить</button>
             <button type="button" class="popup__close" aria-label="закрыть"><img src="./images/close_icon.svg" alt="иконка закрыть" class="popup__icon"></button>
         </form>
-    </div>
+    </div> -->
     <script src="./scripts/index.js" defer></script>
 </body>
 </html>
