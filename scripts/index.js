@@ -9,12 +9,6 @@ const popup = document.querySelector('.popup'),
       personJob = document.querySelector('.profile__job'),
       form = document.querySelector('.popup__form');
 
-// const cardTemplate = document.querySelector('#card').content,
-//       cardElement = cardTemplate.cloneNode(true),
-//       cardImage = cardElement.querySelector('.cards-list__card-image'),
-//       cardTitle = cardElement.querySelector('.cards-list__name');
-
-
 const initialCards = [
 {
     name: 'Лиезен',
@@ -49,7 +43,30 @@ const initialCards = [
 ]; 
 
 
-function cardAdd(name, link, alt='изображение места') {
+for (let i = 0; i < initialCards.length; i++) {
+    cardAdd(initialCards[i].name, initialCards[i].link, initialCards[i].alt);
+}
+
+editBtn.addEventListener('click', () => {
+    popupToggle();
+});
+
+popupClose.addEventListener('click', () => {
+    popupToggle();
+});
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    personName.textContent = formName.value;
+    personJob.textContent = formJob.value;
+
+    popupToggle();
+});
+
+//место для функций
+
+function cardAdd(name, link, alt=`изображение места в ${name}`) {
     const cardTemplate = document.querySelector('#card').content,
           cardElement = cardTemplate.cloneNode(true),
           cardImage = cardElement.querySelector('.cards-list__card-image'),
@@ -72,26 +89,3 @@ function popupToggle() {
         formJob.value = personJob.textContent;
     }
 }
-
-for (let i = 0; i < initialCards.length; i++) {
-    cardAdd(initialCards[i].name, initialCards[i].link, initialCards[i].alt);
-}
-
-editBtn.addEventListener('click', () => {
-    popupToggle();
-});
-
-popupClose.addEventListener('click', () => {
-    popupToggle();
-});
-
-form.addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    personName.textContent = formName.value;
-    personJob.textContent = formJob.value;
-
-    popupToggle();
-});
-
-cardAdd('Альбатрос', 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Thalassarche_bulleri_-_SE_Tasmania.jpg/1280px-Thalassarche_bulleri_-_SE_Tasmania.jpg', 'изображение места');
