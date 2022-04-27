@@ -23,7 +23,7 @@
         </section>
         <section class="cards">
             <ul class="cards-list">
-                <li class="cards-list__card-container">
+                <!-- <li class="cards-list__card-container">
                     <img src="./images/liezen.jpg" alt="дома на фоне гор" class="cards-list__card-image">
                     <div class="cards-list__info">
                         <h2 class="cards-list__name">Лиезен</h2>
@@ -38,7 +38,7 @@
                     </div>
                 </li>
                 <li class="cards-list__card-container">
-                    <img src="./images/moscow.jpg" alt="Вид на МГУ в Москве" class="cards-list__card-image">
+                    <img src="./images/moscow.jpg" alt="вид на МГУ в Москве" class="cards-list__card-image">
                     <div class="cards-list__info">
                         <h2 class="cards-list__name">Москва</h2>
                         <button type="button" class="cards-list__like" aria-label="лайк"><img src="./images/like_icon.svg" alt="иконка лайк"></button>
@@ -64,13 +64,23 @@
                         <h2 class="cards-list__name">Цюрих</h2>
                         <button type="button" class="cards-list__like" aria-label="лайк"><img src="./images/like_icon.svg" alt="иконка лайк"></button>
                     </div>
-                </li>
+                </li> -->
             </ul>
         </section>
     </main>
     <footer class="footer">
         <p class="footer__copyright">&copy; 2022 @rodiontazetdinov</p>
     </footer>
+
+    <template id="card">
+        <li class="cards-list__card-container">
+            <img src="" alt="изображение места" class="cards-list__card-image">
+            <div class="cards-list__info">
+                <h2 class="cards-list__name"></h2>
+                <button type="button" class="cards-list__like" aria-label="лайк"><img src="./images/like_icon.svg" alt="иконка лайк"></button>
+            </div>
+        </li>
+    </template>
     
     <div class="popup">
         <form class="popup__form" name="profileEdit" method="post">
