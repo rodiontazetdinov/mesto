@@ -1,5 +1,4 @@
 .cards-list__like {
-    padding-right: 20px;
     background: transparent;
     border: none;
 }
@@ -8,3 +7,5 @@
     opacity: 0.5;
     cursor: pointer;
 }
+
+

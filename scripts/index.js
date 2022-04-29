@@ -6,24 +6,11 @@ const editBtn = document.querySelector('.profile__edit'),
       formJob = document.querySelector('.popup__job'),
       personName = document.querySelector('.profile__person'),
       personJob = document.querySelector('.profile__job');
+      
+
 
 //стартовая страница
 const initialCards = [
-{
-    name: 'Лиезен',
-    link: './images/liezen.jpg',
-    alt: 'дома на фоне гор в Лиезене'
-},
-{
-    name: 'Лондон',
-    link: './images/london.jpg',
-    alt: 'тауэрский мост в Лондоне'
-},
-{
-    name: 'Москва',
-    link: './images/moscow.jpg',
-    alt: 'вид на МГУ в Москве'
-},
 {
     name: 'Нью-Йорк',
     link: './images/new_york.jpg',
@@ -38,6 +25,21 @@ const initialCards = [
     name: 'Цюрих',
     link: './images/zurich.jpg',
     alt: 'улица с трамваем в Цюрихе'
+},
+{
+    name: 'Москва',
+    link: './images/moscow.jpg',
+    alt: 'вид на МГУ в Москве'
+},
+{
+    name: 'Лондон',
+    link: './images/london.jpg',
+    alt: 'тауэрский мост в Лондоне'
+},
+{
+    name: 'Лиезен',
+    link: './images/liezen.jpg',
+    alt: 'дома на фоне гор в Лиезене'
 }
 ]; 
 
@@ -55,6 +57,13 @@ addBtn.addEventListener('click', () => {
     popupOpen('Новое место', 'Название', 'Ссылка на картинку', 'Создать');
 });
 
+// likeBtns.forEach((likeBtn) => {
+//     console.log(likeBtn);
+//     likeBtn.addEventListener('click', () => {
+//         console.log('hi');
+//     });
+// });
+
 //функции
 
 function cardAdd(name, link, alt=`изображение места в ${name}`) {
@@ -62,14 +71,39 @@ function cardAdd(name, link, alt=`изображение места в ${name}`)
           cardElement = cardTemplate.cloneNode(true),
           cardImage = cardElement.querySelector('.cards-list__card-image'),
           cardTitle = cardElement.querySelector('.cards-list__name'),
-          cardsList = document.querySelector('.cards-list');
+          cardsList = document.querySelector('.cards-list'),
+          likeBtns = cardElement.querySelector('.cards-list__like img');
 
     cardImage.src = link;
     cardImage.alt = alt;
     cardTitle.textContent = name;
 
-    cardsList.prepend(cardElement);  
+    cardsList.prepend(cardElement);
+
+    likeBtns.addEventListener('click', (event) => {
+        if (event.target.src.includes('like_icon_active.svg')) {
+            event.target.src = "./images/like_icon.svg";
+        } else if (event.target.src.includes('like_icon.svg')) {
+            event.target.src = "./images/like_icon_active.svg";
+        }
+    });
+
 }
+
+// function likeChange() {
+//     const likeBtns = document.querySelectorAll('.cards-list__like img');
+
+//     likeBtns.forEach(item => {
+//         item.addEventListener('click', (event) => {
+//             console.log(event.target.src);
+//             if (event.target.src.includes('like_icon_active.svg')) {
+//                 event.target.src = "./images/like_icon.svg";
+//             } else if (event.target.src.includes('like_icon.svg')) {
+//                 event.target.src = "./images/like_icon_active.svg";
+//             }
+//         });
+//     });
+// }
 
 function popupOpen(title, topPlaceholder, bottomPlaceholder, submit, name='', job='') {
     const popupTemplate = document.querySelector('#popup-template').content,
@@ -119,3 +153,9 @@ function popupToggle(popup) {
         popup.classList.add('popup_opened');
     }
 }
+
+
+const likeBtns = document.querySelector('.cards-list__like');
+console.log(likeBtns);
+
+// likeChange();
