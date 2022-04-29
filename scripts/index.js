@@ -2,13 +2,9 @@
 
 const editBtn = document.querySelector('.profile__edit'),
       addBtn = document.querySelector('.profile__add-button'),
-      formName = document.querySelector('.popup__name'),
-      formJob = document.querySelector('.popup__job'),
       personName = document.querySelector('.profile__person'),
       personJob = document.querySelector('.profile__job');
       
-
-
 //стартовая страница
 const initialCards = [
 {
@@ -57,13 +53,6 @@ addBtn.addEventListener('click', () => {
     popupOpen('Новое место', 'Название', 'Ссылка на картинку', 'Создать');
 });
 
-// likeBtns.forEach((likeBtn) => {
-//     console.log(likeBtn);
-//     likeBtn.addEventListener('click', () => {
-//         console.log('hi');
-//     });
-// });
-
 //функции
 
 function cardAdd(name, link, alt=`изображение места в ${name}`) {
@@ -72,7 +61,8 @@ function cardAdd(name, link, alt=`изображение места в ${name}`)
           cardImage = cardElement.querySelector('.cards-list__card-image'),
           cardTitle = cardElement.querySelector('.cards-list__name'),
           cardsList = document.querySelector('.cards-list'),
-          likeBtns = cardElement.querySelector('.cards-list__like img');
+          likeBtns = cardElement.querySelector('.cards-list__like img'),
+          cardsBin = cardElement.querySelector('.cards-list__card-bin');
 
     cardImage.src = link;
     cardImage.alt = alt;
@@ -88,22 +78,11 @@ function cardAdd(name, link, alt=`изображение места в ${name}`)
         }
     });
 
+    cardsBin.addEventListener('click', (event) => {
+        event.target.closest('.cards-list__card-container').remove();
+    });
+
 }
-
-// function likeChange() {
-//     const likeBtns = document.querySelectorAll('.cards-list__like img');
-
-//     likeBtns.forEach(item => {
-//         item.addEventListener('click', (event) => {
-//             console.log(event.target.src);
-//             if (event.target.src.includes('like_icon_active.svg')) {
-//                 event.target.src = "./images/like_icon.svg";
-//             } else if (event.target.src.includes('like_icon.svg')) {
-//                 event.target.src = "./images/like_icon_active.svg";
-//             }
-//         });
-//     });
-// }
 
 function popupOpen(title, topPlaceholder, bottomPlaceholder, submit, name='', job='') {
     const popupTemplate = document.querySelector('#popup-template').content,
@@ -153,9 +132,3 @@ function popupToggle(popup) {
         popup.classList.add('popup_opened');
     }
 }
-
-
-const likeBtns = document.querySelector('.cards-list__like');
-console.log(likeBtns);
-
-// likeChange();
