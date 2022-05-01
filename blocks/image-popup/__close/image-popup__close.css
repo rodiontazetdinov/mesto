@@ -9,7 +9,7 @@
 }
 
 @media screen and (min-width: 900px) {
-.popup__close {
+.image-popup__close {
     position: absolute;
     right: -26px;
     top: -40px;
@@ -18,7 +18,7 @@
 }
 }
 
-.popup__close:hover {
+.image-popup__close:hover {
 opacity: 0.6;
 cursor: pointer;
 }
