@@ -61,7 +61,7 @@ function cardAdd(name, link, alt=`изображение места в ${name}`)
           cardImage = cardElement.querySelector('.cards-list__card-image'),
           cardTitle = cardElement.querySelector('.cards-list__name'),
           cardsList = document.querySelector('.cards-list'),
-          likeBtns = cardElement.querySelector('.cards-list__like img'),
+          likeBtn = cardElement.querySelector('.cards-list__like img'),
           cardsBin = cardElement.querySelector('.cards-list__card-bin');
 
     cardImage.src = link;
@@ -70,7 +70,7 @@ function cardAdd(name, link, alt=`изображение места в ${name}`)
 
     cardsList.prepend(cardElement);
 
-    likeBtns.addEventListener('click', (event) => {
+    likeBtn.addEventListener('click', (event) => {
         if (event.target.src.includes('like_icon_active.svg')) {
             event.target.src = "./images/like_icon.svg";
         } else if (event.target.src.includes('like_icon.svg')) {
@@ -80,6 +80,27 @@ function cardAdd(name, link, alt=`изображение места в ${name}`)
 
     cardsBin.addEventListener('click', (event) => {
         event.target.closest('.cards-list__card-container').remove();
+    });
+
+    cardImage.addEventListener('click', (event) => {
+        console.log('click on image');
+        console.log(event.target);
+        const popupImageTemplate = document.querySelector('#image-popup-template').content,
+              popupElement = popupImageTemplate.cloneNode(true),
+              imagePopupElement = popupElement.querySelector('.image-popup__image'),
+              textPopupElement = popupElement.querySelector('.image-popup__text'),
+              closePopupElement = popupElement.querySelector('.popup__icon'),
+              body = document.querySelector('.page');
+
+              imagePopupElement.src = event.target.src;
+              textPopupElement.textContent = event.target.nextSibling.nextSibling.nextSibling.nextSibling.querySelector('.cards-list__name').textContent;
+              
+              closePopupElement.addEventListener('click', (event) => {
+                const popup = document.querySelector('.image-popup');
+                popup.remove();
+              });
+
+              body.append(popupElement);
     });
 
 }
