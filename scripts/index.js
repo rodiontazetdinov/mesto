@@ -83,8 +83,6 @@ function cardAdd(name, link, alt=`изображение места в ${name}`)
     });
 
     cardImage.addEventListener('click', (event) => {
-        console.log('click on image');
-        console.log(event.target);
         const popupImageTemplate = document.querySelector('#image-popup-template').content,
               popupElement = popupImageTemplate.cloneNode(true),
               imagePopupElement = popupElement.querySelector('.image-popup__image'),
