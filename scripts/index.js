@@ -143,19 +143,6 @@ function popupOpen(title, topPlaceholder, bottomPlaceholder, submit, name = '', 
     popupBtn.textContent = submit;
 
     body.append(popupElement);
-    // popupToggle(popup);
-
-    // popupClose.addEventListener('click', () => {
-    //     if (popupBtn.textContent === 'Сохранить') {
-    //         const popup = document.querySelectorAll('.popup')[0];
-    //         popupToggle(popup);
-    //     } else if (popupBtn.textContent === 'Создать') {
-    //         const popup = document.querySelectorAll('.popup')[1];
-    //         popupToggle(popup);
-    //     } 
-    //     // popupToggle(popup);
-    //     // popup.remove();
-    // });
 
     popupForm.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -167,7 +154,6 @@ function popupOpen(title, topPlaceholder, bottomPlaceholder, submit, name = '', 
         }
 
         popupToggle(popup);
-        // popup.remove();
     });
 }
 
@@ -207,10 +193,4 @@ function showImage(event) {
                 popupToggle(image.closest('.image-popup'));
             }
           });
-    // popupsImages.forEach((image) => {
-    //         if (image.src === event.target.src) {
-    //             popupToggle(image.closest('.image-popup'));
-    //         }
-    //     });
-    
 }
