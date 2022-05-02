@@ -6,9 +6,12 @@
     background-color: rgba(0, 0, 0, 0.5);
     top: 0;
     left: 0;
-    display: none;
+    display: flex;
+    /* display: none; */
     opacity: 0;
     align-items: center;
     justify-content: center;
-    transition: opacity 1s linear;
+    transition: visibility 1s linear, opacity 1s linear;
+    visibility: hidden;
+    
 }
