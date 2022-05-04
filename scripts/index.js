@@ -1,61 +1,33 @@
 'use strict';
 
-const editBtn = document.querySelector('.profile__edit'),
-    addBtn = document.querySelector('.profile__add-button'),
+const profileEdit = document.querySelector('.profile__edit'),
+    cardAdd = document.querySelector('.profile__add-button'),
     personName = document.querySelector('.profile__person'),
-    personJob = document.querySelector('.profile__job');
+    personJob = document.querySelector('.profile__job'),
+    template = document.querySelector('#card').content.querySelector('.cards-list__card-container');
+
 
 //стартовая страница
-const initialCards = [{
-        name: 'Нью-Йорк',
-        link: './images/new_york.jpg',
-        alt: 'вид с птичьего полёта на нью-йорк'
-    },
-    {
-        name: 'Сочи',
-        link: './images/sochi.jpg',
-        alt: 'домики в горах сочи'
-    },
-    {
-        name: 'Цюрих',
-        link: './images/zurich.jpg',
-        alt: 'улица с трамваем в Цюрихе'
-    },
-    {
-        name: 'Москва',
-        link: './images/moscow.jpg',
-        alt: 'вид на МГУ в Москве'
-    },
-    {
-        name: 'Лондон',
-        link: './images/london.jpg',
-        alt: 'тауэрский мост в Лондоне'
-    },
-    {
-        name: 'Лиезен',
-        link: './images/liezen.jpg',
-        alt: 'дома на фоне гор в Лиезене'
-    }
-];
 
-popupOpen('Редактировать профиль', 'Имя', 'О себе', 'Сохранить', personName.textContent, personJob.textContent);
-popupOpen('Новое место', 'Название', 'Ссылка на картинку', 'Создать');
+
+// openPopup('Редактировать профиль', 'Имя', 'О себе', 'Сохранить', personName.textContent, personJob.textContent);
+// openPopup('Новое место', 'Название', 'Ссылка на картинку', 'Создать');
 
 //отрисовываются 6 карточек
 
 for (let i = 0; i < initialCards.length; i++) {
-    cardAdd(initialCards[i].name, initialCards[i].link, initialCards[i].alt);
+    addCard(initialCards[i].name, initialCards[i].link, initialCards[i].alt);
 }
 
 
 //обработчики
 
-editBtn.addEventListener('click', () => {
+profileEdit.addEventListener('click', () => {
     const popup = document.querySelectorAll('.popup')[0];
     popupToggle(popup);
 });
 
-addBtn.addEventListener('click', () => {
+cardAdd.addEventListener('click', () => {
     const popup = document.querySelectorAll('.popup')[1];
     popupToggle(popup);
 });
@@ -73,9 +45,8 @@ popupCloseBtns.forEach((closeBtn) => {
 
 //функции
 
-function cardAdd(name, link, alt = `изображение места в ${name}`) {
-    const cardTemplate = document.querySelector('#card').content,
-        cardElement = cardTemplate.cloneNode(true),
+function addCard(name, link, alt = `изображение места в ${name}`) {
+    const cardElement = template.cloneNode(true),
         cardImage = cardElement.querySelector('.cards-list__card-image'),
         cardTitle = cardElement.querySelector('.cards-list__name'),
         cardsList = document.querySelector('.cards-list'),
@@ -121,7 +92,7 @@ function cardAdd(name, link, alt = `изображение места в ${name}
     });
 }
 
-function popupOpen(title, topPlaceholder, bottomPlaceholder, submit, name = '', job = '') {
+function openPopup(title, topPlaceholder, bottomPlaceholder, submit, name = '', job = '') {
     const popupTemplate = document.querySelector('#popup-template').content,
         popupElement = popupTemplate.cloneNode(true),
         popupTitle = popupElement.querySelector('.popup__title'),
@@ -150,7 +121,7 @@ function popupOpen(title, topPlaceholder, bottomPlaceholder, submit, name = '', 
             personName.textContent = popupName.value;
             personJob.textContent = popupJob.value;
         } else if (popupBtn.textContent === 'Создать') {
-            cardAdd(popupName.value, popupJob.value);
+            addCard(popupName.value, popupJob.value);
         }
 
         popupToggle(popup);
