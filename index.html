@@ -31,6 +31,32 @@
         <p class="footer__copyright">&copy; 2022 @rodiontazetdinov</p>
     </footer>
 
+    <div class="popup popup_edit">
+        <form class="popup__form" name="profileEdit" method="post">
+            <h2 class="popup__title"></h2>
+            <input class="popup__name popup__name_type_user-name" type="text" name="pofileName" placeholder="">
+            <input class="popup__job popup__job_type_user-job" type="text" name="profileJob" placeholder="">
+            <button class="popup__button" type="submit"></button>
+            <button type="button" class="popup__close" aria-label="закрыть"><img src="./images/close_icon.svg" alt="иконка закрыть" class="popup__icon"></button>
+        </form>
+    </div>
+    <div class="popup popup_card-add">
+        <form class="popup__form" name="cardAdd" method="post">
+            <h2 class="popup__title"></h2>
+            <input class="popup__name popup__name_type_place-name" type="text" name="cardName" placeholder="">
+            <input class="popup__job popup__job_type_image-url" type="text" name="cardUrl" placeholder="">
+            <button class="popup__button" type="submit"></button>
+            <button type="button" class="popup__close" aria-label="закрыть"><img src="./images/close_icon.svg" alt="иконка закрыть" class="popup__icon"></button>
+        </form>
+    </div>
+    <div class="popup popup_show-image">
+        <div class="popup__container">
+            <button type="button" class="popup__close" aria-label="закрыть"><img src="./images/close_icon.svg" alt="иконка закрыть" class="popup__icon"></button>
+            <img src="./images/moscow.jpg" alt="" class="popup__image">
+            <p class="popup__text"></p>
+        </div>
+    </div>
+
     <template id="card">
         <li class="cards-list__card-container">
             <img src="./images/moscow.jpg" alt="изображение места" class="cards-list__card-image">
@@ -41,26 +67,7 @@
             </div>
         </li>
     </template>
-    <template id="popup-template">
-        <div class="popup">
-            <form class="popup__form" name="profileEdit" method="post">
-                <h2 class="popup__title"></h2>
-                <input class="popup__name" type="text" name="pofileName" placeholder="">
-                <input class="popup__job" type="text" name="profileJob" placeholder="">
-                <button class="popup__button" type="submit"></button>
-                <button type="button" class="popup__close" aria-label="закрыть"><img src="./images/close_icon.svg" alt="иконка закрыть" class="popup__icon"></button>
-            </form>
-        </div>
-    </template>
-    <template id="image-popup-template">
-        <div class="image-popup">
-            <div class="image-popup__container">
-                <button type="button" class="image-popup__close" aria-label="закрыть"><img src="./images/close_icon.svg" alt="иконка закрыть" class="popup__icon"></button>
-                <img src="./images/moscow.jpg" alt="" class="image-popup__image">
-                <p class="image-popup__text"></p>
-            </div>
-        </div>
-    </template>
+
     <script src="./scripts/index.js" defer></script>
 </body>
 </html>
