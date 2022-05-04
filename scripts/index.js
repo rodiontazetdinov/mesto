@@ -10,6 +10,7 @@ const body = document.querySelector('body'),
     popupEditProfile = document.querySelector('.popup_edit'),
     popupAddCard = document.querySelector('.popup_card-add'),
     popupImageShow = document.querySelector('.popup_show-image'),
+    popupImageShowPicture = popupImageShow.querySelector('.popup__image'),
     template = document.querySelector('#card').content.querySelector('.cards-list__card-container'),
     popupAddCardForm = popupAddCard.querySelector('.popup__form'),
     popupEditProfileForm = popupEditProfile.querySelector('.popup__form'),
@@ -85,6 +86,12 @@ function formNewCard(title, url) {
 
     image.src = url;
     name.textContent = title;
+
+    image.addEventListener('click', (event) => {
+        popupImageShowPicture.src = image.src;
+
+        openPopup(popupImageShow);
+    });    
 
     return card;
 }
