@@ -11,14 +11,10 @@ const body = document.querySelector('body'),
     popupAddCard = document.querySelector('.popup_card-add'),
     popupImageShow = document.querySelector('.popup_show-image'),
     template = document.querySelector('#card').content.querySelector('.cards-list__card-container'),
-    popupAddCardForm = popupAddCard.querySelector('.popup__form');
-
-
-
-
-//стартовая страница
-
-
+    popupAddCardForm = popupAddCard.querySelector('.popup__form'),
+    popupEditProfileForm = popupEditProfile.querySelector('.popup__form'),
+    popupEditProfileFormName = popupEditProfileForm.querySelector('.popup__name_type_user-name'),
+    popupEditProfileFormNameJob = popupEditProfileForm.querySelector('.popup__job_type_user-job');
 
 //отрисовываются 6 карточек
 
@@ -26,11 +22,14 @@ for (let i = 0; i < initialCards.length; i++) {
     addNewCard(initialCards[i].name, initialCards[i].link);
 }
 
-
 //обработчики
 
 profileEditBtn.addEventListener('click', () => {
     openPopup(popupEditProfile);
+
+    popupEditProfileFormName.value = personName.textContent;
+    popupEditProfileFormNameJob.value = personJob.textContent;
+    
 });
 
 cardAddBtn.addEventListener('click', () => {
@@ -55,6 +54,18 @@ popupAddCardForm.addEventListener('submit', (event) => {
 
     event.target.querySelector('.popup__name_type_place-name').value = '';
     event.target.querySelector('.popup__job_type_image-url').value = '';
+});
+
+popupEditProfileForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const name = event.target.querySelector('.popup__name_type_user-name'),
+    job = event.target.querySelector('.popup__job_type_user-job');
+
+    personName.textContent = name.value;
+    personJob.textContent = job.value;
+
+    closePopup(event.target.closest('.popup'));
 });
 
 
@@ -85,6 +96,8 @@ function openPopup(popup) {
 function closePopup(popup) {
 popup.classList.remove('popup_opened');
 }
+
+
 
 // profileEdit.addEventListener('click', () => {
 //     // const popup = popups.querySelector('.popup_edit');
