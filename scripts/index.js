@@ -4,15 +4,18 @@ const body = document.querySelector('body'),
     cardsList = body.querySelector('.cards-list'),
     profileEditBtn = body.querySelector('.profile__edit'),
     cardAddBtn = body.querySelector('.profile__add-button'),
-    closeBtns = body.querySelectorAll('.popup__close'),
+    btnsClose = body.querySelectorAll('.popup__close'),
     personName = body.querySelector('.profile__person'),
     personJob = body.querySelector('.profile__job'),
     popupEditProfile = document.querySelector('.popup_edit'),
     popupAddCard = document.querySelector('.popup_card-add'),
     popupImageShow = document.querySelector('.popup_show-image'),
     popupImageShowPicture = popupImageShow.querySelector('.popup__image'),
+    popupImageShowText = popupImageShow.querySelector('.popup__text'),
     template = document.querySelector('#card').content.querySelector('.cards-list__card-container'),
     popupAddCardForm = popupAddCard.querySelector('.popup__form'),
+    popupAddCardFormTitle = popupAddCardForm.querySelector('.popup__name_type_place-name'),
+    popupAddCardFormUrl = popupAddCardForm.querySelector('.popup__job_type_image-url'),
     popupEditProfileForm = popupEditProfile.querySelector('.popup__form'),
     popupEditProfileFormName = popupEditProfileForm.querySelector('.popup__name_type_user-name'),
     popupEditProfileFormNameJob = popupEditProfileForm.querySelector('.popup__job_type_user-job');
@@ -37,7 +40,7 @@ cardAddBtn.addEventListener('click', () => {
     openPopup(popupAddCard);
 });
 
-closeBtns.forEach((btn) => {
+btnsClose.forEach((btn) => {
     btn.addEventListener('click', (event) => {
         closePopup(event.target.closest('.popup'));
     });
@@ -46,31 +49,25 @@ closeBtns.forEach((btn) => {
 popupAddCardForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    const title = event.target.querySelector('.popup__name_type_place-name').value,
-    url = event.target.querySelector('.popup__job_type_image-url').value;
+    const title = popupAddCardFormTitle.value,
+    url = popupAddCardFormUrl.value;
 
     addNewCard(title, url);
 
-    closePopup(event.target.closest('.popup'));
+    closePopup(popupAddCard);
 
-    event.target.querySelector('.popup__name_type_place-name').value = '';
-    event.target.querySelector('.popup__job_type_image-url').value = '';
+    popupAddCardFormTitle.value = '';
+    popupAddCardFormUrl.value = '';
 });
 
 popupEditProfileForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    const name = event.target.querySelector('.popup__name_type_user-name'),
-    job = event.target.querySelector('.popup__job_type_user-job');
+    personName.textContent = popupEditProfileFormName.value;
+    personJob.textContent = popupEditProfileFormNameJob.value;
 
-    personName.textContent = name.value;
-    personJob.textContent = job.value;
-
-    closePopup(event.target.closest('.popup'));
+    closePopup(popupEditProfile);
 });
-
-
-
 
 //функции
 
@@ -88,9 +85,12 @@ function formNewCard(title, url) {
 
     image.src = url;
     name.textContent = title;
+    image.alt = `Изображение места в ${title}`;
 
     image.addEventListener('click', (event) => {
         popupImageShowPicture.src = image.src;
+        popupImageShowPicture.alt = image.alt;
+        popupImageShowText.textContent = name.textContent;
 
         openPopup(popupImageShow);
     });    
@@ -100,7 +100,7 @@ function formNewCard(title, url) {
     });
 
     like.addEventListener('click', (event) => {
-        swithLike(like);
+        switchLike(like);
     });
 
     return card;
@@ -114,6 +114,6 @@ function closePopup(popup) {
 popup.classList.remove('popup_opened');
 }
 
-function swithLike(likeBtn) {
+function switchLike(likeBtn) {
     likeBtn.classList.toggle('cards-list__like_active');
 }
