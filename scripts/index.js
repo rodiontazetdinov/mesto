@@ -7,6 +7,7 @@ const body = document.querySelector('body'),
     btnsClose = body.querySelectorAll('.popup__close'),
     personName = body.querySelector('.profile__person'),
     personJob = body.querySelector('.profile__job'),
+    popups = body.querySelectorAll('.popup'),
     popupEditProfile = document.querySelector('.popup_edit'),
     popupAddCard = document.querySelector('.popup_card-add'),
     popupImageShow = document.querySelector('.popup_show-image'),
@@ -69,6 +70,14 @@ popupEditProfileForm.addEventListener('submit', (event) => {
     closePopup(popupEditProfile);
 });
 
+popups.forEach((popup) => {
+    popup.addEventListener('click', (evt) => {
+        if (evt.target === evt.currentTarget) {
+            closePopup(popup);
+        }
+    });
+});
+
 //функции
 
 function addNewCard(title, url) {
@@ -116,4 +125,8 @@ popup.classList.remove('popup_opened');
 
 function switchLike(likeBtn) {
     likeBtn.classList.toggle('cards-list__like_active');
+}
+
+function closeByOverlay() {
+
 }
