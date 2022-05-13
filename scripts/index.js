@@ -78,6 +78,16 @@ popups.forEach((popup) => {
     });
 });
 
+window.addEventListener('keydown', (evt) => {
+        if (evt.key === 'Escape') {
+            popups.forEach((popup) => {
+                if (popup.classList.contains('popup_opened')) {
+                    popup.classList.remove('popup_opened');
+                }
+            })
+        }
+    });
+
 //функции
 
 function addNewCard(title, url) {
