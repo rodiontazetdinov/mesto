@@ -15,11 +15,11 @@ const body = document.querySelector('body'),
     popupImageShowText = popupImageShow.querySelector('.popup__text'),
     template = document.querySelector('#card').content.querySelector('.cards-list__card-container'),
     popupAddCardForm = popupAddCard.querySelector('.popup__form'),
-    popupAddCardFormTitle = popupAddCardForm.querySelector('.popup__name_type_place-name'),
-    popupAddCardFormUrl = popupAddCardForm.querySelector('.popup__job_type_image-url'),
+    popupAddCardFormTitle = popupAddCardForm.querySelector('.popup__input_type_place-name'),
+    popupAddCardFormUrl = popupAddCardForm.querySelector('.popup__input_type_image-url'),
     popupEditProfileForm = popupEditProfile.querySelector('.popup__form'),
-    popupEditProfileFormName = popupEditProfileForm.querySelector('.popup__name_type_user-name'),
-    popupEditProfileFormNameJob = popupEditProfileForm.querySelector('.popup__job_type_user-job');
+    popupEditProfileFormName = popupEditProfileForm.querySelector('.popup__input_type_user-name'),
+    popupEditProfileFormNameJob = popupEditProfileForm.querySelector('.popup__input_type_user-job');
 
 //отрисовываются 6 карточек
 
