@@ -84,7 +84,7 @@ window.addEventListener('keydown', (evt) => {
                 if (popup.classList.contains('popup_opened')) {
                     popup.classList.remove('popup_opened');
                 }
-            })
+            });
         }
     });
 
