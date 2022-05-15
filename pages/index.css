@@ -36,3 +36,4 @@
 @import url(../blocks/cards-list/__like/_active/cards-list__like_active.css);
 @import url(../blocks/popup/__button/_disabled/popup__button_disabled.css);
 @import url(../blocks/popup/__error/popup__error.css);
+@import url(../blocks/popup/__input/_error/popup__input_error.css);
