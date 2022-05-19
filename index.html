@@ -32,7 +32,7 @@
         <p class="footer__copyright">&copy; 2022 @rodiontazetdinov</p>
     </footer>
 
-    <div class="popup popup_edit">
+    <div class="popup popup_type_profile-edit">
         <form class="popup__form" name="profileEdit" method="post" novalidate>
             <h2 class="popup__title">Редактировать профиль</h2>
             <input class="popup__input popup__input_type_user-name" type="text" name="name" placeholder="Имя" minlength="2" maxlength="40" required>
@@ -43,10 +43,10 @@
             <button type="button" class="popup__close" aria-label="закрыть"><img src="./images/close_icon.svg" alt="иконка закрыть" class="popup__icon"></button>
         </form>
     </div>
-    <div class="popup popup_card-add">
+    <div class="popup popup_type_card-add">
         <form class="popup__form" name="cardAdd" method="post" novalidate>
             <h2 class="popup__title">Новое место</h2>
-            <input class="popup__input popup__input_type_place-name" type="text" name="place" placeholder="Название" required>
+            <input class="popup__input popup__input_type_place-name" type="text" name="place" placeholder="Название" minlength="2" maxlength="30" required>
             <span class="popup__error" id="text-error"></span>
             <input class="popup__input popup__input_type_image-url" type="url" name="url" placeholder="Ссылка на картинку" required>
             <span class="popup__error" id="url-error"></span>
@@ -54,7 +54,7 @@
             <button type="button" class="popup__close" aria-label="закрыть"><img src="./images/close_icon.svg" alt="иконка закрыть" class="popup__icon"></button>
         </form>
     </div>
-    <div class="popup popup_show-image">
+    <div class="popup popup_type_show-image">
         <div class="popup__container">
             <button type="button" class="popup__close" aria-label="закрыть"><img src="./images/close_icon.svg" alt="иконка закрыть" class="popup__icon"></button>
             <img src="./images/moscow.jpg" alt="" class="popup__image">

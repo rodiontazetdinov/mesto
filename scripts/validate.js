@@ -1,34 +1,44 @@
 'use strict';
 
-const forms = document.querySelectorAll('.popup__form');
+// const validationConfig = {
+//     formSelector: '.popup__form',
+//     inputSelector: '.popup__input',
+//     submitButtonSelector: '.popup__button',
+//     inactiveButtonClass: 'popup__button_disabled',
+//     inputErrorClass: 'popup__input_error'
+//     // errorClass: 'popup__error_visible'
+// }
 
-forms.forEach((form) => {
-    const inputList = Array.from(form.querySelectorAll('.popup__input'));
-    const btn = form.querySelector('.popup__button');
-    setValidation(inputList, btn);
-});
+// const forms = document.querySelectorAll('.popup__form');
+
+// forms.forEach((form) => {
+//     const inputList = Array.from(form.querySelectorAll('.popup__input'));
+//     const btn = form.querySelector('.popup__button');
+//     setValidation(inputList, btn);
+// });
 
 function showInputError (evt, btn) {
     evt.target.nextSibling.nextSibling.textContent = evt.target.validationMessage;
-    evt.target.classList.add('popup__input_error');
+    evt.target.classList.add(validationConfig.inputErrorClass);
     disableBtn(btn);
 }
 
 function hideInputError (evt, btn, inputList) {
     evt.target.nextSibling.nextSibling.textContent = '';
-    evt.target.classList.remove('popup__input_error');
+    evt.target.classList.remove(validationConfig.inputErrorClass);
     if (isValid(inputList)) {
         activateBtn(btn);
     }
 }
 
 function disableBtn (btn) {
-    btn.classList.add('popup__button_disabled');
+    console.log('disabled');
+    btn.classList.add(validationConfig.inactiveButtonClass);
     btn.setAttribute('disabled', 'disabled');
 }
 
 function activateBtn (btn) {
-    btn.classList.remove('popup__button_disabled');
+    btn.classList.remove(validationConfig.inactiveButtonClass);
     btn.removeAttribute('disabled');
 }
 
@@ -54,3 +64,26 @@ function setValidation (inputList, btn) {
         });
     });
 }
+
+function enableValidation (validationConfig) {
+    const forms = document.querySelectorAll(validationConfig.formSelector);
+
+    forms.forEach((form) => {
+        const inputList = Array.from(form.querySelectorAll(validationConfig.inputSelector));
+        const btn = form.querySelector(validationConfig.submitButtonSelector);
+        setValidation(inputList, btn);
+    });  
+}
+
+
+////////////////////////////////
+const validationConfig = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_error'
+    // errorClass: 'popup__error_visible'
+}
+///////////////////////////////
+enableValidation(validationConfig);

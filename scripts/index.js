@@ -8,9 +8,9 @@ const body = document.querySelector('body'),
     personName = body.querySelector('.profile__person'),
     personJob = body.querySelector('.profile__job'),
     popups = body.querySelectorAll('.popup'),
-    popupEditProfile = document.querySelector('.popup_edit'),
-    popupAddCard = document.querySelector('.popup_card-add'),
-    popupImageShow = document.querySelector('.popup_show-image'),
+    popupEditProfile = document.querySelector('.popup_type_profile-edit'),
+    popupAddCard = document.querySelector('.popup_type_card-add'),
+    popupImageShow = document.querySelector('.popup_type_show-image'),
     popupImageShowPicture = popupImageShow.querySelector('.popup__image'),
     popupImageShowText = popupImageShow.querySelector('.popup__text'),
     template = document.querySelector('#card').content.querySelector('.cards-list__card-container'),
@@ -57,8 +57,7 @@ popupAddCardForm.addEventListener('submit', (event) => {
 
     closePopup(popupAddCard);
 
-    popupAddCardFormTitle.value = '';
-    popupAddCardFormUrl.value = '';
+    event.currentTarget.reset();
 });
 
 popupEditProfileForm.addEventListener('submit', (event) => {
@@ -78,17 +77,19 @@ popups.forEach((popup) => {
     });
 });
 
-window.addEventListener('keydown', (evt) => {
-        if (evt.key === 'Escape') {
-            popups.forEach((popup) => {
-                if (popup.classList.contains('popup_opened')) {
-                    popup.classList.remove('popup_opened');
-                }
-            });
-        }
-    });
 
-//функции
+
+// функции
+
+function addEscCloser(evt) {
+    if (evt.key === 'Escape') {
+        popups.forEach((popup) => {
+            if (popup.classList.contains('popup_opened')) {
+                closePopup(popup);
+            }
+        });
+    };
+}
 
 function addNewCard(title, url) {
     const newCard = formNewCard(title, url);
@@ -127,16 +128,14 @@ function formNewCard(title, url) {
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
+    window.addEventListener('keydown', addEscCloser);
 }
 
 function closePopup(popup) {
-popup.classList.remove('popup_opened');
+    popup.classList.remove('popup_opened');
+    window.removeEventListener('keydown', addEscCloser);
 }
 
 function switchLike(likeBtn) {
     likeBtn.classList.toggle('cards-list__like_active');
-}
-
-function closeByOverlay() {
-
 }
