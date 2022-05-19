@@ -78,7 +78,6 @@ popups.forEach((popup) => {
 });
 
 
-
 // функции
 
 function addEscCloser(evt) {
