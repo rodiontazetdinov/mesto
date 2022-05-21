@@ -1,15 +1,5 @@
 'use strict';
 
-// const validationConfig = {
-//     formSelector: '.popup__form',
-//     addCardForm: 'popup_type_card-add',
-//     inputSelector: '.popup__input',
-//     submitButtonSelector: '.popup__button',
-//     inactiveButtonClass: 'popup__button_disabled',
-//     inputErrorClass: 'popup__input_error',
-//     profileBtn: '.profile__add-button'
-// }
-
 function showInputError (evt, btn, validationConfig) {
     const errorElement = document.querySelector(`#${evt.target.id}-error`);
     errorElement.textContent = evt.target.validationMessage;
@@ -66,12 +56,6 @@ function enableValidation (validationConfig) {
         const inputList = Array.from(form.querySelectorAll(validationConfig.inputSelector));
         const btn = form.querySelector(validationConfig.submitButtonSelector);
         setValidation(inputList, btn, validationConfig);
-    });
-}
-
-function setCheckBtn (profileBtn, btn) {
-    profileBtn.addEventListener('click', () => {
-        disableBtn(btn);
     });
 }
 
