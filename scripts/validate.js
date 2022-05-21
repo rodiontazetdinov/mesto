@@ -1,14 +1,14 @@
 'use strict';
 
-const validationConfig = {
-    formSelector: '.popup__form',
-    addCardForm: 'popup_type_card-add',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_error',
-    profileBtn: '.profile__add-button'
-}
+// const validationConfig = {
+//     formSelector: '.popup__form',
+//     addCardForm: 'popup_type_card-add',
+//     inputSelector: '.popup__input',
+//     submitButtonSelector: '.popup__button',
+//     inactiveButtonClass: 'popup__button_disabled',
+//     inputErrorClass: 'popup__input_error',
+//     profileBtn: '.profile__add-button'
+// }
 
 function showInputError (evt, btn) {
     evt.target.nextSibling.nextSibling.textContent = evt.target.validationMessage;
@@ -80,4 +80,12 @@ function setCheckBtn (profileBtn, btn) {
 
 
 
-enableValidation(validationConfig);
+enableValidation({
+    formSelector: '.popup__form',
+    addCardForm: 'popup_type_card-add',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_error',
+    profileBtn: '.profile__add-button'
+});
