@@ -86,13 +86,13 @@ popups.forEach((popup) => {
 
 function addEscCloser(evt) {
     if (evt.key === 'Escape') {
-        popups.forEach((popup) => {
-            if (popup.classList.contains('popup_opened')) {
+        const popup = body.querySelector('.popup_opened');
+            if (popup) {
                 closePopup(popup);
             }
-        });
-    };
+        }
 }
+
 
 function addNewCard(title, url) {
     const newCard = formNewCard(title, url);
