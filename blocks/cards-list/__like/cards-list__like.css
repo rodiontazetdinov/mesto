@@ -5,6 +5,7 @@
     width: 22px;
     height: 19px;
     background-repeat: no-repeat;
+    padding-right: 18px;
 }
 
 .cards-list__like:hover {
