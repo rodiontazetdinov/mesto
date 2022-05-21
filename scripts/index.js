@@ -17,6 +17,7 @@ const body = document.querySelector('body'),
     popupAddCardForm = popupAddCard.querySelector('.popup__form'),
     popupAddCardFormTitle = popupAddCardForm.querySelector('.popup__input_type_place-name'),
     popupAddCardFormUrl = popupAddCardForm.querySelector('.popup__input_type_image-url'),
+    popupAddCardFormSubmit = popupAddCardForm.querySelector('.popup__button'),
     popupEditProfileForm = popupEditProfile.querySelector('.popup__form'),
     popupEditProfileFormName = popupEditProfileForm.querySelector('.popup__input_type_user-name'),
     popupEditProfileFormNameJob = popupEditProfileForm.querySelector('.popup__input_type_user-job');
@@ -39,6 +40,9 @@ profileEditBtn.addEventListener('click', () => {
 
 cardAddBtn.addEventListener('click', () => {
     openPopup(popupAddCard);
+    disableBtn(popupAddCardFormSubmit, {
+        inactiveButtonClass: 'popup__button_disabled'
+    });
 });
 
 btnsClose.forEach((btn) => {

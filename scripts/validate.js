@@ -10,26 +10,26 @@
 //     profileBtn: '.profile__add-button'
 // }
 
-function showInputError (evt, btn) {
+function showInputError (evt, btn, validationConfig) {
     evt.target.nextSibling.nextSibling.textContent = evt.target.validationMessage;
     evt.target.classList.add(validationConfig.inputErrorClass);
-    disableBtn(btn);
+    disableBtn(btn, validationConfig);
 }
 
-function hideInputError (evt, btn, inputList) {
+function hideInputError (evt, btn, inputList, validationConfig) {
     evt.target.nextSibling.nextSibling.textContent = '';
     evt.target.classList.remove(validationConfig.inputErrorClass);
     if (isValid(inputList)) {
-        activateBtn(btn);
+        activateBtn(btn, validationConfig);
     }
 }
 
-function disableBtn (btn) {
+function disableBtn (btn, validationConfig) {
     btn.classList.add(validationConfig.inactiveButtonClass);
     btn.setAttribute('disabled', 'disabled');
 }
 
-function activateBtn (btn) {
+function activateBtn (btn, validationConfig) {
     btn.classList.remove(validationConfig.inactiveButtonClass);
     btn.removeAttribute('disabled');
 }
@@ -40,35 +40,30 @@ function isValid (inputList) {
     });
 }
 
-function handleInput (evt, btn, inputList) {
+function handleInput (evt, btn, inputList, validationConfig) {
     if (evt.target.validity.valid) {
-        hideInputError(evt, btn, inputList);
+        hideInputError(evt, btn, inputList, validationConfig);
     }
     if (!evt.target.validity.valid) {
-        showInputError(evt, btn);
+        showInputError(evt, btn, validationConfig);
     }
 }
 
-function setValidation (inputList, btn, profileBtn, form) {
+function setValidation (inputList, btn, validationConfig) {
     inputList.forEach((input) => {
         input.addEventListener('input', (evt) => {
-            handleInput(evt, btn,inputList);
+            handleInput(evt, btn, inputList, validationConfig);
         });   
     });
-    if (form.parentNode.classList.contains(validationConfig.addCardForm)) {
-        setCheckBtn(profileBtn, btn);
-    }
-    
 }
 
 function enableValidation (validationConfig) {
     const forms = document.querySelectorAll(validationConfig.formSelector);
-    const profileBtn = document.querySelector(validationConfig.profileBtn);
 
     forms.forEach((form) => {
         const inputList = Array.from(form.querySelectorAll(validationConfig.inputSelector));
         const btn = form.querySelector(validationConfig.submitButtonSelector);
-        setValidation(inputList, btn, profileBtn, form);
+        setValidation(inputList, btn, validationConfig);
     });
 }
 
@@ -78,14 +73,10 @@ function setCheckBtn (profileBtn, btn) {
     });
 }
 
-
-
 enableValidation({
     formSelector: '.popup__form',
-    addCardForm: 'popup_type_card-add',
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__button',
     inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_error',
-    profileBtn: '.profile__add-button'
+    inputErrorClass: 'popup__input_error'
 });
