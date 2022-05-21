@@ -12,3 +12,9 @@
     transition: visibility 1s linear, opacity 1s linear;
     visibility: hidden;
 }
+
+@media screen and (max-height: 900px) {
+    .popup {
+        min-height: 121vh;
+    }
+}
