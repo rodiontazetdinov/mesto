@@ -11,13 +11,15 @@
 // }
 
 function showInputError (evt, btn, validationConfig) {
-    evt.target.nextSibling.nextSibling.textContent = evt.target.validationMessage;
+    const errorElement = document.querySelector(`#${evt.target.id}-error`);
+    errorElement.textContent = evt.target.validationMessage;
     evt.target.classList.add(validationConfig.inputErrorClass);
     disableBtn(btn, validationConfig);
 }
 
 function hideInputError (evt, btn, inputList, validationConfig) {
-    evt.target.nextSibling.nextSibling.textContent = '';
+    const errorElement = document.querySelector(`#${evt.target.id}-error`);
+    errorElement.textContent = '';
     evt.target.classList.remove(validationConfig.inputErrorClass);
     if (isValid(inputList)) {
         activateBtn(btn, validationConfig);
