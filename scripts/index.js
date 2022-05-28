@@ -12,10 +12,10 @@ const body = document.querySelector('body'),
     popups = body.querySelectorAll('.popup'),
     popupEditProfile = document.querySelector('.popup_type_profile-edit'),
     popupAddCard = document.querySelector('.popup_type_card-add'),
-    //popupImageShow = document.querySelector('.popup_type_show-image'),
-    // popupImageShowPicture = popupImageShow.querySelector('.popup__image'),
-    // popupImageShowText = popupImageShow.querySelector('.popup__text'),
-    template = document.querySelector('#card').content.querySelector('.cards-list__card-container'),
+    popupImageShow = document.querySelector('.popup_type_show-image'),
+    popupImageShowPicture = popupImageShow.querySelector('.popup__image'),
+    popupImageShowText = popupImageShow.querySelector('.popup__text'),
+    // template = document.querySelector('#card').content.querySelector('.cards-list__card-container'),
     popupAddCardForm = popupAddCard.querySelector('.popup__form'),
     popupAddCardFormTitle = popupAddCardForm.querySelector('.popup__input_type_place-name'),
     popupAddCardFormUrl = popupAddCardForm.querySelector('.popup__input_type_image-url'),
@@ -121,9 +121,6 @@ function setLikeBtnListener (newCard) {
 
 function setImageBtnListener (newCard) {
     const image = newCard.querySelector('.cards-list__card-image');
-    const popupImageShow = document.querySelector('.popup_type_show-image'),
-            popupImageShowPicture = popupImageShow.querySelector('.popup__image'),
-            popupImageShowText = popupImageShow.querySelector('.popup__text');
 
     image.addEventListener('click', () => {
         popupImageShowPicture.src = image.src;
@@ -134,37 +131,8 @@ function setImageBtnListener (newCard) {
     });
 
 }
-// function formNewCard(title, url) {
-//     const card = template.cloneNode(true),
-//     image = card.querySelector('.cards-list__card-image'),
-//     name = card.querySelector('.cards-list__name'),
-//     trash = card.querySelector('.cards-list__card-bin'),
-//     like = card.querySelector('.cards-list__like');
 
-//     image.src = url;
-//     name.textContent = title;
-//     image.alt = `Изображение места в ${title}`;
-
-//     image.addEventListener('click', (event) => {
-//         popupImageShowPicture.src = image.src;
-//         popupImageShowPicture.alt = image.alt;
-//         popupImageShowText.textContent = name.textContent;
-
-//         openPopup(popupImageShow);
-//     });    
-
-//     trash.addEventListener('click', (event) => {
-//         event.target.closest('.cards-list__card-container').remove();
-//     });
-
-//     like.addEventListener('click', (event) => {
-//         switchLike(like);
-//     });
-
-//     return card;
-// }
-
-export function openPopup(popup) {
+function openPopup(popup) {
     popup.classList.add('popup_opened');
     window.addEventListener('keydown', addEscCloser);
 }
@@ -174,6 +142,6 @@ function closePopup(popup) {
     window.removeEventListener('keydown', addEscCloser);
 }
 
-export function switchLike(likeBtn) {
+function switchLike(likeBtn) {
     likeBtn.classList.toggle('cards-list__like_active');
 }
