@@ -1,6 +1,7 @@
 'use strict';
 
 import {Card} from './Card.js';
+import FormValidator from './FormValidator.js';
 
 const body = document.querySelector('body'),
     cardsList = body.querySelector('.cards-list'),
@@ -15,7 +16,6 @@ const body = document.querySelector('body'),
     popupImageShow = document.querySelector('.popup_type_show-image'),
     popupImageShowPicture = popupImageShow.querySelector('.popup__image'),
     popupImageShowText = popupImageShow.querySelector('.popup__text'),
-    // template = document.querySelector('#card').content.querySelector('.cards-list__card-container'),
     popupAddCardForm = popupAddCard.querySelector('.popup__form'),
     popupAddCardFormTitle = popupAddCardForm.querySelector('.popup__input_type_place-name'),
     popupAddCardFormUrl = popupAddCardForm.querySelector('.popup__input_type_image-url'),
@@ -84,6 +84,16 @@ popups.forEach((popup) => {
     });
 });
 
+const formValidator = new FormValidator({
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_error'
+});
+
+formValidator.enableValidation();
+
 
 // функции
 
@@ -96,6 +106,11 @@ function addEscCloser(evt) {
         }
 }
 
+
+function disableBtn (btn, validationConfig) {
+    btn.classList.add(validationConfig.inactiveButtonClass);
+    btn.setAttribute('disabled', 'disabled');
+}
 
 function addNewCard(title, url, templateSelector) {
     const newCard = new Card(title, url, templateSelector).getCard();
@@ -125,7 +140,8 @@ function setImageBtnListener (newCard) {
     image.addEventListener('click', () => {
         popupImageShowPicture.src = image.src;
         popupImageShowPicture.alt = image.alt;
-        popupImageShowText.textContent = name.textContent;
+        const name = image.alt.split(' ');
+        popupImageShowText.textContent = name[name.length -1];
 
         openPopup(popupImageShow);
     });
