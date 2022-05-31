@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     background-color: #fff;
+    width: 282px;
     color: #000;
     max-width: 430px;
     border-radius: 10px;
@@ -9,11 +10,18 @@
     box-sizing: border-box;
     position: relative;
     bottom: 113px;
+    margin-right: 16px;
+    margin-left: 16px;
+}
+
+@media screen and (min-width: 468px) {
+    .popup__form {
+        width: 430px;
+    }
 }
 
 @media screen and (min-width: 900px) {
     .popup__form {
-        width: 430px;
         padding: 34px 36px;
         bottom: 35px;
     }
