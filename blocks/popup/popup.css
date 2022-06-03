@@ -15,6 +15,6 @@
 
 @media screen and (max-height: 900px) {
     .popup {
-        min-height: 121vh;
+        min-height: 100vh;
     }
 }

@@ -1,6 +1,6 @@
 'use strict';
 
-const initialCards = [{
+export const initialCards = [{
     name: 'Нью-Йорк',
     link: './images/new_york.jpg',
 },

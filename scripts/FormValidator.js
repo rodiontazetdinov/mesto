@@ -1,81 +1,65 @@
 export default class FormValidator {
-    constructor(config) {
-        this._formSelector = config.formSelector;
+    constructor(config, formElement) {
         this._inputSelector = config.inputSelector;
         this._submitButtonSelector = config.submitButtonSelector;
         this._inactiveButtonClass = config.inactiveButtonClass;
         this._inputErrorClass = config.inputErrorClass;
+        this._formElement = formElement;
+        this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+        this.submitButtonElement = this._formElement.querySelector(this._submitButtonSelector);
     }
 
-    _disableBtn (btn, validationConfig) {
-        btn.classList.add(validationConfig.inactiveButtonClass);
-        btn.setAttribute('disabled', 'disabled');
-        console.log('disableBtn');
+    _disableBtn () {
+        this.submitButtonElement.classList.add(this._inactiveButtonClass);
+        this.submitButtonElement.setAttribute('disabled', 'disabled');
     }
 
-    _activateBtn (btn, validationConfig) {
-        btn.classList.remove(validationConfig.inactiveButtonClass);
-        btn.removeAttribute('disabled');
-        console.log('activateBtn');
+    _activateBtn () {
+        this.submitButtonElement.classList.remove(this._inactiveButtonClass);
+        this.submitButtonElement.removeAttribute('disabled');
     }
     
-    _isValid (inputList) {
-        return inputList.every((input) => {
+    _isValid () {
+        return this._inputList.every((input) => {
             return input.validity.valid;
         });
         
     }
 
-    _showInputError (evt, btn, validationConfig) {
+    _showInputError (evt) {
         const errorElement = document.querySelector(`#${evt.target.id}-error`);
         errorElement.textContent = evt.target.validationMessage;
-        evt.target.classList.add(validationConfig.inputErrorClass);
-        this._disableBtn(btn, validationConfig);
+        evt.target.classList.add(this._inputErrorClass);
+        this._disableBtn();
     }
     
-    _hideInputError (evt, btn, inputList, validationConfig) {
+    _hideInputError (evt) {
         const errorElement = document.querySelector(`#${evt.target.id}-error`);
         errorElement.textContent = '';
-        evt.target.classList.remove(validationConfig.inputErrorClass);
-        if (this._isValid(inputList)) {
-            this._activateBtn(btn, validationConfig);
+        evt.target.classList.remove(this._inputErrorClass);
+        if (this._isValid()) {
+            this._activateBtn();
         }
     }
 
-    _handleInput (evt, btn, inputList, validationConfig) {
+    _handleInput (evt) {
         if (evt.target.validity.valid) {
-            this._hideInputError(evt, btn, inputList, validationConfig);
+            this._hideInputError(evt);
         }
         if (!evt.target.validity.valid) {
-            this._showInputError(evt, btn, validationConfig);
+            this._showInputError(evt);
         }
     }
 
-    _setValidation (inputList, btn, validationConfig) {
-        inputList.forEach((input) => {
+    _setValidation () {
+        this._inputList.forEach((input) => {
             input.addEventListener('input', (evt) => {
-                this._handleInput(evt, btn, inputList, validationConfig);
+                this._handleInput(evt);
             });   
         });
     }
 
-    _sayHello () {
-    }
-
     enableValidation() {
-        const forms = document.querySelectorAll(this._formSelector);
-
-        forms.forEach((form) => {
-            const inputList = Array.from(form.querySelectorAll(this._inputSelector));
-            const btn = form.querySelector(this._submitButtonSelector);
-            const validationConfig = {
-                formSelector: this._formSelector,
-                inputSelector: this._inputSelector,
-                submitButtonSelector: this._submitButtonSelector,
-                inactiveButtonClass: this._inactiveButtonClass,
-                inputErrorClass: this._inputErrorClass
-            };
-            this._setValidation(inputList, btn, validationConfig);
-        });
+        this._setValidation();
     }
 }
