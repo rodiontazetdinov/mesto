@@ -3,22 +3,27 @@ import {initialCards} from './cards.js';
 import {Card} from './Card.js';
 import FormValidator from './FormValidator.js';
 
+
 const body = document.querySelector('body'),
     profileEditBtn = body.querySelector('.profile__edit'),
     cardAddBtn = body.querySelector('.profile__add-button'),
     btnsClose = body.querySelectorAll('.popup__close'),
     personName = body.querySelector('.profile__person'),
     personJob = body.querySelector('.profile__job'),
+
     popups = body.querySelectorAll('.popup'),
-    popupEditProfile = document.querySelector('.popup_type_profile-edit'),
+    
     popupAddCard = document.querySelector('.popup_type_card-add'),
     popupAddCardForm = popupAddCard.querySelector('.popup__form'),
     popupAddCardFormTitle = popupAddCardForm.querySelector('.popup__input_type_place-name'),
     popupAddCardFormUrl = popupAddCardForm.querySelector('.popup__input_type_image-url'),
     popupAddCardFormSubmit = popupAddCardForm.querySelector('.popup__button'),
+
+    popupEditProfile = document.querySelector('.popup_type_profile-edit'),
     popupEditProfileForm = popupEditProfile.querySelector('.popup__form'),
     popupEditProfileFormName = popupEditProfileForm.querySelector('.popup__input_type_user-name'),
     popupEditProfileFormNameJob = popupEditProfileForm.querySelector('.popup__input_type_user-job'),
+
     templateSelector = '#card';
 
 const popupEditProfileFormValidator = new FormValidator({
@@ -35,11 +40,34 @@ const popupAddCardFormValidator = new FormValidator({
     inputErrorClass: 'popup__input_error'
 }, popupAddCardForm); 
 
-//отрисовываются 6 карточек
 
-for (let i = 0; i < initialCards.length; i++) {
-    new Card(initialCards[i].name, initialCards[i].link, templateSelector).addCard();
+// функции
+
+function addEscCloser(evt) {
+    if (evt.key === 'Escape') {
+        const popup = body.querySelector('.popup_opened');
+            if (popup) {
+                closePopup(popup);
+            }
+        }
 }
+
+function openPopup(popup) {
+    popup.classList.add('popup_opened');
+    window.addEventListener('keydown', addEscCloser);
+}
+
+function closePopup(popup) {
+    popup.classList.remove('popup_opened');
+    window.removeEventListener('keydown', addEscCloser);
+}
+
+function disableBtn (btn, validationConfig) {
+    btn.classList.add(validationConfig.inactiveButtonClass);
+    btn.setAttribute('disabled', 'disabled');
+}
+
+
 //обработчики
 
 profileEditBtn.addEventListener('click', () => {
@@ -92,33 +120,15 @@ popups.forEach((popup) => {
     });
 });
 
+//отрисовываются 6 карточек
 
+for (let i = 0; i < initialCards.length; i++) {
+    new Card(initialCards[i].name, initialCards[i].link, templateSelector).addCard();
+}
+
+
+//включаем вадилацию
 
 popupEditProfileFormValidator.enableValidation();
 popupAddCardFormValidator.enableValidation();
 
-// функции
-
-function addEscCloser(evt) {
-    if (evt.key === 'Escape') {
-        const popup = body.querySelector('.popup_opened');
-            if (popup) {
-                closePopup(popup);
-            }
-        }
-}
-
-function openPopup(popup) {
-    popup.classList.add('popup_opened');
-    window.addEventListener('keydown', addEscCloser);
-}
-
-function closePopup(popup) {
-    popup.classList.remove('popup_opened');
-    window.removeEventListener('keydown', addEscCloser);
-}
-
-function disableBtn (btn, validationConfig) {
-    btn.classList.add(validationConfig.inactiveButtonClass);
-    btn.setAttribute('disabled', 'disabled');
-}
