@@ -12,7 +12,6 @@ const body = document.querySelector('body'),
     popups = body.querySelectorAll('.popup'),
     popupEditProfile = document.querySelector('.popup_type_profile-edit'),
     popupAddCard = document.querySelector('.popup_type_card-add'),
-    // popupImageShow = document.querySelector('.popup_type_show-image'),
     popupAddCardForm = popupAddCard.querySelector('.popup__form'),
     popupAddCardFormTitle = popupAddCardForm.querySelector('.popup__input_type_place-name'),
     popupAddCardFormUrl = popupAddCardForm.querySelector('.popup__input_type_image-url'),
@@ -21,6 +20,20 @@ const body = document.querySelector('body'),
     popupEditProfileFormName = popupEditProfileForm.querySelector('.popup__input_type_user-name'),
     popupEditProfileFormNameJob = popupEditProfileForm.querySelector('.popup__input_type_user-job'),
     templateSelector = '#card';
+
+const popupEditProfileFormValidator = new FormValidator({
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_error'
+}, popupEditProfileForm);
+
+const popupAddCardFormValidator = new FormValidator({
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_error'
+}, popupAddCardForm); 
 
 //отрисовываются 6 карточек
 
@@ -79,19 +92,7 @@ popups.forEach((popup) => {
     });
 });
 
-const popupEditProfileFormValidator = new FormValidator({
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_error'
-}, popupEditProfileForm);
 
-const popupAddCardFormValidator = new FormValidator({
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_error'
-}, popupAddCardForm); 
 
 popupEditProfileFormValidator.enableValidation();
 popupAddCardFormValidator.enableValidation();
