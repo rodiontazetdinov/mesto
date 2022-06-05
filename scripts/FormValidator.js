@@ -9,7 +9,7 @@ export default class FormValidator {
         this.submitButtonElement = this._formElement.querySelector(this._submitButtonSelector);
     }
 
-    _disableBtn () {
+    disableBtn () {
         this.submitButtonElement.classList.add(this._inactiveButtonClass);
         this.submitButtonElement.setAttribute('disabled', 'disabled');
     }
@@ -30,7 +30,7 @@ export default class FormValidator {
         const errorElement = document.querySelector(`#${evt.target.id}-error`);
         errorElement.textContent = evt.target.validationMessage;
         evt.target.classList.add(this._inputErrorClass);
-        this._disableBtn();
+        this.disableBtn();
     }
     
     _hideInputError (evt) {

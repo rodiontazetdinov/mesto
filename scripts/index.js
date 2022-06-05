@@ -12,12 +12,16 @@ const body = document.querySelector('body'),
     personJob = body.querySelector('.profile__job'),
 
     popups = body.querySelectorAll('.popup'),
+    cardsList = body.querySelector('.cards-list');
+
+    export const  popupImageShow = document.querySelector('.popup_type_show-image');
+    export const popupImageShowPicture = popupImageShow.querySelector('.popup__image');
+    export const popupImageShowText = popupImageShow.querySelector('.popup__text');
     
-    popupAddCard = document.querySelector('.popup_type_card-add'),
+    const popupAddCard = document.querySelector('.popup_type_card-add'),
     popupAddCardForm = popupAddCard.querySelector('.popup__form'),
     popupAddCardFormTitle = popupAddCardForm.querySelector('.popup__input_type_place-name'),
     popupAddCardFormUrl = popupAddCardForm.querySelector('.popup__input_type_image-url'),
-    popupAddCardFormSubmit = popupAddCardForm.querySelector('.popup__button'),
 
     popupEditProfile = document.querySelector('.popup_type_profile-edit'),
     popupEditProfileForm = popupEditProfile.querySelector('.popup__form'),
@@ -43,7 +47,7 @@ const popupAddCardFormValidator = new FormValidator({
 
 // функции
 
-function addEscCloser(evt) {
+export function addEscCloser(evt) {
     if (evt.key === 'Escape') {
         const popup = body.querySelector('.popup_opened');
             if (popup) {
@@ -62,11 +66,14 @@ function closePopup(popup) {
     window.removeEventListener('keydown', addEscCloser);
 }
 
-function disableBtn (btn, validationConfig) {
-    btn.classList.add(validationConfig.inactiveButtonClass);
-    btn.setAttribute('disabled', 'disabled');
+function addCard(card) {
+    cardsList.prepend(card);
 }
 
+function createCard(title, url, templateSelector) {
+    const card = new Card(title, url, templateSelector).formCard();
+    return card;
+}
 
 //обработчики
 
@@ -80,9 +87,8 @@ profileEditBtn.addEventListener('click', () => {
 
 cardAddBtn.addEventListener('click', () => {
     openPopup(popupAddCard);
-    disableBtn(popupAddCardFormSubmit, {
-        inactiveButtonClass: 'popup__button_disabled'
-    });
+    popupAddCardFormValidator.disableBtn();
+
 });
 
 btnsClose.forEach((btn) => {
@@ -96,8 +102,9 @@ popupAddCardForm.addEventListener('submit', (event) => {
     const title = popupAddCardFormTitle.value,
     url = popupAddCardFormUrl.value;
 
-    const card = new Card(title, url, templateSelector);
-    card.addCard();
+    const card = createCard(title, url, templateSelector);
+    
+    addCard(card);
 
     closePopup(popupAddCard);
 
@@ -123,7 +130,7 @@ popups.forEach((popup) => {
 //отрисовываются 6 карточек
 
 for (let i = 0; i < initialCards.length; i++) {
-    new Card(initialCards[i].name, initialCards[i].link, templateSelector).addCard();
+    addCard(createCard(initialCards[i].name, initialCards[i].link, templateSelector));
 }
 
 
@@ -131,4 +138,3 @@ for (let i = 0; i < initialCards.length; i++) {
 
 popupEditProfileFormValidator.enableValidation();
 popupAddCardFormValidator.enableValidation();
-
