@@ -2,6 +2,7 @@
 import {initialCards} from './cards.js';
 import {Card} from './Card.js';
 import FormValidator from './FormValidator.js';
+import { openPopup, addEscCloser, closePopup } from './utils.js';
 
 
 const body = document.querySelector('body'),
@@ -46,25 +47,6 @@ const popupAddCardFormValidator = new FormValidator({
 
 
 // функции
-
-export function addEscCloser(evt) {
-    if (evt.key === 'Escape') {
-        const popup = body.querySelector('.popup_opened');
-            if (popup) {
-                closePopup(popup);
-            }
-        }
-}
-
-function openPopup(popup) {
-    popup.classList.add('popup_opened');
-    window.addEventListener('keydown', addEscCloser);
-}
-
-function closePopup(popup) {
-    popup.classList.remove('popup_opened');
-    window.removeEventListener('keydown', addEscCloser);
-}
 
 function addCard(card) {
     cardsList.prepend(card);

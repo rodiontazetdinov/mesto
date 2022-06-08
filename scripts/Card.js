@@ -1,5 +1,5 @@
-import {popupImageShow, popupImageShowPicture, popupImageShowText, addEscCloser} from './index.js';
-
+import {popupImageShow, popupImageShowPicture, popupImageShowText} from './index.js';
+import { openPopup, addEscCloser, closePopup } from './utils.js';
 export class Card {
     constructor(title, url, templateSelector) {
         this._title = title;
@@ -15,17 +15,12 @@ export class Card {
         this._trashBtn = this._card.querySelector('.cards-list__card-bin');
     }
 
-    _openPopup() {
-        popupImageShow.classList.add('popup_opened');
-        window.addEventListener('keydown', addEscCloser);
-    }
-
     _setImageClickListener() {
         this._image.addEventListener('click', () => {
             popupImageShowPicture.src = this._image.src;
             popupImageShowPicture.alt = this._image.alt;
             popupImageShowText.textContent = this._subtitle.textContent;
-            this._openPopup();
+            openPopup(popupImageShow);
         });
     }
     _setTrashBtnListener() {
