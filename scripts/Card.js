@@ -1,7 +1,7 @@
 import {popupImageShow, popupImageShowPicture, popupImageShowText} from './index.js';
 import { openPopup, addEscCloser, closePopup } from './utils.js';
 export class Card {
-    constructor(title, url, templateSelector) {
+    constructor(title, url, templateSelector, handleCardClick) {
         this._title = title;
         this._url = url;
 
@@ -13,15 +13,18 @@ export class Card {
         this._subtitle = this._card.querySelector('.cards-list__name');
         this._likeBtn = this._card.querySelector('.cards-list__like');
         this._trashBtn = this._card.querySelector('.cards-list__card-bin');
+
+        this._handleCardClick = handleCardClick;
     }
 
     _setImageClickListener() {
-        this._image.addEventListener('click', () => {
-            popupImageShowPicture.src = this._image.src;
-            popupImageShowPicture.alt = this._image.alt;
-            popupImageShowText.textContent = this._subtitle.textContent;
-            openPopup(popupImageShow);
-        });
+        this._image.addEventListener('click', this._handleCardClick); //() => //{
+            //popupImageShowPicture.src = this._image.src;
+            //popupImageShowPicture.alt = this._image.alt;
+            //popupImageShowText.textContent = this._subtitle.textContent;
+            //openPopup(popupImageShow);
+            
+        //});
     }
     _setTrashBtnListener() {
         this._trashBtn.addEventListener('click', (evt) => {
