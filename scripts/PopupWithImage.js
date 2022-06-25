@@ -10,9 +10,9 @@ export default class PopupWithImage extends Popup {
 
     open() {
         super.open();
-        this._popupImageShowPicture.src = this._image.src;
-        this._popupImageShowPicture.alt = this._image.alt;
-        this._popupImageShowText.textContent = this._subtitle.textContent;
+        this._popupImageShowPicture.src = this._image.src; //взять value из формы создания карточки
+        this._popupImageShowPicture.alt = this._image.alt; //взять value из формы создания карточки
+        this._popupImageShowText.textContent = this._subtitle.textContent; //взять value из формы создания карточки
     }
 
 
