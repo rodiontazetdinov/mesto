@@ -13,10 +13,17 @@ export default class PopupWithForm extends Popup {
     _getInputValues() {
         const inputValues = [];
         this._popupFormInputs.forEach(input => {
+            console.log(input.value);
             inputValues.push(input.value);
         });
+        const items = [];
+        const item = {
+                name: inputValues[0],
+                link: inputValues[1]
+                };    
+        items.push(item);
         
-        return inputValues;
+        return items;
     }
 
     setEventListeners() {
@@ -26,6 +33,8 @@ export default class PopupWithForm extends Popup {
 
     close() {
         super.close();
-        this._popupForm.reset();
+        if (this._popup.classList.contains('popup_type_card-add')) {
+            this._popupForm.reset();
+        }
     }
 }
