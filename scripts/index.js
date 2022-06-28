@@ -2,12 +2,10 @@
 import {initialCards as items} from './cards.js';
 import {Card} from './Card.js';
 import FormValidator from './FormValidator.js';
-import Popup from './Popup.js';
 import PopupWithForm from './PopupWithForm.js';
 import PopupWithImage from './PopupWithImage.js';
 import Section from './Section.js';
 import UserInfo from './UserInfo.js';
-import { openPopup, addEscCloser, closePopup } from './utils.js';
 
 const imagePopup = new PopupWithImage('.popup_type_show-image');
       imagePopup.setEventListeners();
@@ -59,11 +57,15 @@ const profileForm = new PopupWithForm(
     '.popup_type_profile-edit',
     (evt) => {
         evt.preventDefault();
-        const inputValues = profileForm._getInputValues();
-        console.log(inputValues);
         
+        const inputValues = profileForm._getInputValues();
+        userInfo.setUserInfo(
+            {
+                user: inputValues[0].name,
+                info: inputValues[0].link
+            }
+        );
         profileForm.close();
-
     }
 );
 
@@ -77,6 +79,8 @@ cardForm.setEventListeners();
 
 profileEditBtn.addEventListener('click', () => {
     profileForm.open();
+    const data = userInfo.getUserInfo();
+        profileForm.setInputValues(data);
     
 });
 
