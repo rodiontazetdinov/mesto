@@ -1,19 +1,35 @@
 {
   "name": "mesto",
   "version": "1.0.0",
-  "description": "study_project_mesto",
-  "main": "index.js",
+  "description": "**Привет!**\r Проект, в котором можно будет добавлять карточки с местами для путешествий, ставить лайки, и открывать и закрывать popup\r Уже реализовано:\r  - Можно редактировать имя профиля и род занятий\r  - Добавлять карточки\r  - Удалять карточки\r  - Ставить лайки\r  - Реализована валидация полей форм\r Технологии:\r  - резиновая вёрстка на flex-box\r  - модальное окно для редактирования на JS\r  - модальное окно для добавления карточек\r  - модальное окно для просмотра карточек",
+  "main": "webpack.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rimraf dist && webpack --mode production",
+    "dev": "webpack serve"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rodiontazetdinov/mesto.git"
   },
-  "author": "@rodiontazetdinov",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/rodiontazetdinov/mesto/issues"
   },
-  "homepage": "https://github.com/rodiontazetdinov/mesto#readme"
+  "homepage": "https://github.com/rodiontazetdinov/mesto#readme",
+  "devDependencies": {
+    "@babel/core": "^7.18.6",
+    "@babel/preset-env": "^7.18.6",
+    "babel-loader": "^8.2.5",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.7.1",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.1",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.2"
+  },
+  "dependencies": {
+    "core-js": "^3.23.3"
+  }
 }

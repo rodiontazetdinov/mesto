@@ -5,21 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto</title>
-    <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body class="page">
     <header class="header">
-        <img src="./images/logo.svg" alt="логотип" class="header__logo">
+        <img src="<%=require('./images/logo.svg')%>" alt="логотип" class="header__logo">
     </header>
     <main class="content">
         <section class="profile">
-            <img src="./images/avatar.png" alt="Аватар пользователя" class="profile__avatar">
+            <img src="<%=require('./images/avatar.png')%>" alt="Аватар пользователя" class="profile__avatar">
             <div class="profile__container">
                 <h1 class="profile__person">Жак-Ив Кусто</h1>
                 <p class="profile__job">Исследователь океана</p>
-                <button class="profile__edit" type="button" aria-label="редактировать профиль"><img src="./images/pencil-icon.svg" alt="иконка карандаш" ></button>
+                <button class="profile__edit" type="button" aria-label="редактировать профиль"><img src="<%=require('./images/pencil-icon.svg')%>" alt="иконка карандаш" ></button>
             </div>
-            <button class="profile__add-button" type="button" aria-label="добавить"><img src="./images/plus_icon.svg" alt="иконка плюс"></button>
+            <button class="profile__add-button" type="button" aria-label="добавить"><img src="<%=require('./images/plus_icon.svg')%>" alt="иконка плюс"></button>
         </section>
         <section class="cards">
             <ul class="cards-list">
@@ -38,7 +37,7 @@
             <input class="popup__input popup__input_type_user-job" id="job" type="text" name="job" placeholder="О себе" minlength="2" maxlength="200" required>
             <span class="popup__error" id="job-error"></span>
             <button class="popup__button" type="submit">Сохранить</button>
-            <button type="button" class="popup__close" aria-label="закрыть"><img src="./images/close_icon.svg" alt="иконка закрыть" class="popup__icon"></button>
+            <button type="button" class="popup__close" aria-label="закрыть"><img src="<%=require('./images/close_icon.svg')%>" alt="иконка закрыть" class="popup__icon"></button>
         </form>
     </div>
     <div class="popup popup_type_card-add">
@@ -49,29 +48,27 @@
             <input class="popup__input popup__input_type_image-url" id="url" type="url" name="url" placeholder="Ссылка на картинку" required>
             <span class="popup__error" id="url-error"></span>
             <button class="popup__button" type="submit">Создать</button>
-            <button type="button" class="popup__close" aria-label="закрыть"><img src="./images/close_icon.svg" alt="иконка закрыть" class="popup__icon"></button>
+            <button type="button" class="popup__close" aria-label="закрыть"><img src="<%=require('./images/close_icon.svg')%>" alt="иконка закрыть" class="popup__icon"></button>
         </form>
     </div>
     <div class="popup popup_type_show-image">
         <div class="popup__container">
-            <button type="button" class="popup__close" aria-label="закрыть"><img src="./images/close_icon.svg" alt="иконка закрыть" class="popup__icon"></button>
-            <img src="./images/moscow.jpg" alt="" class="popup__image">
+            <button type="button" class="popup__close" aria-label="закрыть"><img src="<%=require('./images/close_icon.svg')%>" alt="иконка закрыть" class="popup__icon"></button>
+            <img src="<%=require('./images/moscow.jpg')%>" alt="" class="popup__image">
             <p class="popup__text"></p>
         </div>
     </div>
 
     <template id="card">
         <li class="cards-list__card-container">
-            <img src="./images/moscow.jpg" alt="изображение места" class="cards-list__card-image">
-            <img src="./images/bin_icon.svg" alt="иконка удаления" class="cards-list__card-bin">
+            <img src="<%=require('./images/moscow.jpg')%>" alt="изображение места" class="cards-list__card-image">
+            <img src="<%=require('./images/bin_icon.svg')%>" alt="иконка удаления" class="cards-list__card-bin">
             <div class="cards-list__info">
                 <h2 class="cards-list__name"></h2>
                 <button type="button" class="cards-list__like" aria-label="лайк"></button>
             </div>
         </li>
     </template>
-    
-    <script type="module" src="./pages/index.js" ></script>
      
 </body>
 </html>
