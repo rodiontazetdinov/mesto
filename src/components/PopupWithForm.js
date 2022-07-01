@@ -11,18 +11,22 @@ export default class PopupWithForm extends Popup {
     }
 
     _getInputValues() {
-        const inputValues = [];
-        this._popupFormInputs.forEach(input => {
-            inputValues.push(input.value);
-        });
-        const items = [];
-        const item = {
-                name: inputValues[0],
-                link: inputValues[1]
-                };    
-        items.push(item);
+        // const inputValues = [];
+        // this._popupFormInputs.forEach(input => {
+        //     inputValues.push(input.value);
+        // });
+        // const items = [];
+        // const item = {
+        //         name: inputValues[0],
+        //         link: inputValues[1]
+        //         };    
+        // items.push(item);
         
-        return items;
+        // return items;
+        this._formValues = {};
+        this._popupFormInputs.forEach(input => this._formValues[input.name] = input.value);
+        console.log(this._formValues);
+        return this._formValues;
     }
 
     setInputValues(data) {
@@ -39,8 +43,7 @@ export default class PopupWithForm extends Popup {
 
     close() {
         super.close();
-        if (this._popup.classList.contains('popup_type_card-add')) {
-            this._popupForm.reset();
-        }
+        
+        this._popupForm.reset();
     }
 }
