@@ -5,11 +5,10 @@ export default class UserInfo {
     }
 
     getUserInfo() {
-        const userInfo = [];
-        userInfo.push(this._user.textContent);
-        userInfo.push(this._info.textContent);
-        // userInfo.user = this._user.textContent;
-        // userInfo.info = this._info.textContent;
+        const userInfo = {};
+        userInfo.user = this._user.textContent;
+        userInfo.info = this._info.textContent;
+
         return userInfo;
     }
 
