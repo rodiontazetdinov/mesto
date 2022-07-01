@@ -1,5 +1,3 @@
-// import {popupImageShow, popupImageShowPicture, popupImageShowText} from './index.js';
-import { openPopup, addEscCloser, closePopup } from './utils.js';
 export class Card {
     constructor(title, url, templateSelector, handleCardClick) {
         this._title = title;
@@ -18,23 +16,18 @@ export class Card {
     }
 
     _setImageClickListener() {
-        this._image.addEventListener('click', this._handleCardClick); //() => //{
-            //popupImageShowPicture.src = this._image.src;
-            //popupImageShowPicture.alt = this._image.alt;
-            //popupImageShowText.textContent = this._subtitle.textContent;
-            //openPopup(popupImageShow);
-            
-        //});
+        this._image.addEventListener('click', this._handleCardClick);
     }
+
     _setTrashBtnListener() {
-        this._trashBtn.addEventListener('click', (evt) => {
-            evt.target.closest('.cards-list__card-container').remove();
+        this._trashBtn.addEventListener('click', () => {
+            this.removeCard();
         });
     }
 
     _setLikeBtnListener() {
         this._likeBtn.addEventListener('click', () => {
-            this._likeBtn.classList.toggle('cards-list__like_active');
+            this.toggleLikeBtn();
         });
     }
 
@@ -43,6 +36,15 @@ export class Card {
         this._setTrashBtnListener();
         this._setLikeBtnListener();
     }
+
+    toggleLikeBtn() {
+        this._likeBtn.classList.toggle('cards-list__like_active');
+    }
+
+    removeCard() {
+        this._card.remove();
+        this._card = null;
+    } 
 
     formCard() {
         this._image.src = this._url;
