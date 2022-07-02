@@ -1,7 +1,6 @@
 'use strict';
 import './index.css';
 import {initialCards as items} from '../components/cards.js';
-import {Card} from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
@@ -11,7 +10,14 @@ import createCard from '../components/utils.js';
 
 //попап демонстрации картинок
 export const imagePopup = new PopupWithImage('.popup_type_show-image');
-      
+
+const validationConfig = {
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_error'
+};
+
 //экземляр класса управления данными профиля
 const userInfo = new UserInfo('.profile__person', '.profile__job');
 
@@ -42,12 +48,7 @@ const profileForm = new PopupWithForm(
         evt.preventDefault();
         
         const inputValues = profileForm.getInputValues();
-        userInfo.setUserInfo(
-            {
-                user: inputValues[0].name,
-                info: inputValues[0].link
-            }
-        );
+        userInfo.setUserInfo(inputValues);
         profileForm.close();
     }
 );
@@ -57,20 +58,10 @@ const popupAddCardForm = document.querySelector('.popup_type_card-add .popup__fo
 const popupEditProfileForm = document.querySelector('.popup_type_profile-edit .popup__form');
 
 //экземляр класса валидации формы редактирования профиля
-const popupEditProfileFormValidator = new FormValidator({
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_error'
-}, popupEditProfileForm);
+const popupEditProfileFormValidator = new FormValidator(validationConfig, popupEditProfileForm);
 
 //экземляр класса валидации формы добавления карточек
-const popupAddCardFormValidator = new FormValidator({
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_error'
-}, popupAddCardForm); 
+const popupAddCardFormValidator = new FormValidator(validationConfig, popupAddCardForm); 
 
 //кнопки профиля и добавления карточек
 const profileEditBtn = document.querySelector('.profile__edit');
@@ -84,12 +75,13 @@ cardForm.setEventListeners();
 
 cardAddBtn.addEventListener('click', () => {
     cardForm.open();
+    popupAddCardFormValidator.disableBtn();
 });
 
 profileEditBtn.addEventListener('click', () => {
     profileForm.open();
     const data = userInfo.getUserInfo();
-        profileForm.setInputValues(data);
+    profileForm.setInputValues(data);
     
 });
 
