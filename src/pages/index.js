@@ -7,9 +7,10 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
+import createCard from '../components/utils.js';
 
 //попап демонстрации картинок
-const imagePopup = new PopupWithImage('.popup_type_show-image');
+export const imagePopup = new PopupWithImage('.popup_type_show-image');
       
 //экземляр класса управления данными профиля
 const userInfo = new UserInfo('.profile__person', '.profile__job');
@@ -18,15 +19,7 @@ const userInfo = new UserInfo('.profile__person', '.profile__job');
 const startSection = new Section({
     items: items,
     renderer: (item) => {
-        const card = new Card(
-            item.name,
-            item.link,
-            '#card',
-            (evt) => {
-                imagePopup.open(item.link, item.name);
-            }
-        ).formCard();
-        return card;
+        return createCard(item);
     }
 }, '.cards-list');
 
@@ -35,22 +28,9 @@ const cardForm = new PopupWithForm(
     '.popup_type_card-add',
     (evt) => {
         evt.preventDefault();
-        const items = cardForm._getInputValues();
-        const section = new Section({
-            items: items,
-            renderer: (item) => {
-                const card = new Card(
-                    item.name,
-                    item.link,
-                    '#card',
-                    (evt) => {
-                        imagePopup.open(`<%=require(${item.link})%>`, item.name);
-                    }
-                ).formCard();
-                return card;
-            }
-        }, '.cards-list');
-        section.renderItems();
+        const item = cardForm.getInputValues();
+        const card = createCard(item);
+        startSection.addItem(card);
         cardForm.close();
     }
 );
@@ -61,7 +41,7 @@ const profileForm = new PopupWithForm(
     (evt) => {
         evt.preventDefault();
         
-        const inputValues = profileForm._getInputValues();
+        const inputValues = profileForm.getInputValues();
         userInfo.setUserInfo(
             {
                 user: inputValues[0].name,
