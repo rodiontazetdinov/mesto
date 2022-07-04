@@ -91,3 +91,4 @@ popupAddCardFormValidator.enableValidation();
 
 //отрисовываем начальные карточки
 startSection.renderItems();
+  
