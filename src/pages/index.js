@@ -58,21 +58,24 @@ const profileForm = new PopupWithForm(
     '.popup_type_profile-edit',
     (evt) => {
         evt.preventDefault();
+        profileForm.changeText('Сохранение...');
         const profileData = profileForm.getInputValues();
         api.patchUserInfo(profileData)
         .then(data => {
             userInfo.setUserInfo(data);
-            // console.log(res);
-            // getProfile(api);
         })
         .catch(err => {
             console.log(err);
+        })
+        .finally(() => {
+            profileForm.changeText('Сохранить');
+            profileForm.close();
         });
         
         
         // const inputValues = profileForm.getInputValues();
         //userInfo.setUserInfo(inputValues);
-        profileForm.close();
+        //profileForm.close();
 
         //let sd = null;
         

@@ -8,8 +8,12 @@ export default class PopupWithForm extends Popup {
         this._popupImageShowText = this._popup.querySelector('.popup__text');
         this._submitter = submitter;
         this._popupFormInputs = Array.from(this._popup.querySelectorAll('.popup__input'));
+        this._submitButton = this._popup.querySelector('.popup__button');
     }
 
+    changeText(text) {
+        this._submitButton.textContent = text;
+    } 
     getInputValues() {
         this._formValues = {};
         this._popupFormInputs.forEach(input => this._formValues[input.name] = input.value);
