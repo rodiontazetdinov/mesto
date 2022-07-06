@@ -1,7 +1,7 @@
 import {Card} from './Card.js';
-import { imagePopup } from '../pages/index.js';
+import { imagePopup, userInfo } from '../pages/index.js';
 
-export default function createCard (item) {
+export function createCard (item) {
     const card = new Card(
         item.name,
         item.link,
@@ -11,4 +11,14 @@ export default function createCard (item) {
         }
     ).formCard();
     return card;
+}
+
+export function getProfile (api) {
+    api.getProfile()
+        .then(data => {
+            userInfo.setUserInfo(data);
+        })
+        .catch(err => {
+            console.log(err);
+        });
 }

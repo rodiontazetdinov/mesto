@@ -6,10 +6,22 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
-import createCard from '../components/utils.js';
+import {createCard, getProfile} from '../components/utils.js';
+import Api from '../components/Api.js';
 
 //попап демонстрации картинок
 export const imagePopup = new PopupWithImage('.popup_type_show-image');
+
+const api = new Api({
+    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-44',
+    headers: {
+    authorization: '31ceb449-7f5f-494e-b20d-eecaa293257f',
+    'Content-Type': 'application/json'
+  }
+});
+
+
+
 
 const validationConfig = {
     inputSelector: '.popup__input',
@@ -19,10 +31,10 @@ const validationConfig = {
 };
 
 //экземляр класса управления данными профиля
-const userInfo = new UserInfo('.profile__person', '.profile__job');
+export const userInfo = new UserInfo('.profile__person', '.profile__job');
 
 //экземляр класса отрисовки начальных карточек
-const startSection = new Section({
+const cardSection = new Section({
     items: items,
     renderer: (item) => {
         return createCard(item);
@@ -36,7 +48,7 @@ const cardForm = new PopupWithForm(
         evt.preventDefault();
         const item = cardForm.getInputValues();
         const card = createCard(item);
-        startSection.addItem(card);
+        cardSection.addItem(card);
         cardForm.close();
     }
 );
@@ -46,10 +58,13 @@ const profileForm = new PopupWithForm(
     '.popup_type_profile-edit',
     (evt) => {
         evt.preventDefault();
-        
-        const inputValues = profileForm.getInputValues();
-        userInfo.setUserInfo(inputValues);
+        getProfile(api);
+        // const inputValues = profileForm.getInputValues();
+        //userInfo.setUserInfo(inputValues);
         profileForm.close();
+
+        //let sd = null;
+        
     }
 );
 
@@ -85,10 +100,13 @@ profileEditBtn.addEventListener('click', () => {
     
 });
 
+//заполняем начальные данные профиля
+getProfile(api);
+
 //включаем валидацию
 popupEditProfileFormValidator.enableValidation();
 popupAddCardFormValidator.enableValidation();
 
 //отрисовываем начальные карточки
-startSection.renderItems();
+cardSection.renderItems();
   
