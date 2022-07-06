@@ -58,7 +58,18 @@ const profileForm = new PopupWithForm(
     '.popup_type_profile-edit',
     (evt) => {
         evt.preventDefault();
-        getProfile(api);
+        const profileData = profileForm.getInputValues();
+        api.patchUserInfo(profileData)
+        .then(data => {
+            userInfo.setUserInfo(data);
+            // console.log(res);
+            // getProfile(api);
+        })
+        .catch(err => {
+            console.log(err);
+        });
+        
+        
         // const inputValues = profileForm.getInputValues();
         //userInfo.setUserInfo(inputValues);
         profileForm.close();
@@ -101,7 +112,14 @@ profileEditBtn.addEventListener('click', () => {
 });
 
 //заполняем начальные данные профиля
-getProfile(api);
+// getProfile(api);
+api.getProfile()
+        .then(data => {
+            userInfo.setUserInfo(data);
+        })
+        .catch(err => {
+            console.log(err);
+        });
 
 //включаем валидацию
 popupEditProfileFormValidator.enableValidation();

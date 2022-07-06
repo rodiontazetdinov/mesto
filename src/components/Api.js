@@ -24,8 +24,23 @@ export default class Api {
 
     
     
-    patchUserInfo() {
+    patchUserInfo({ name, about }) {
+        return fetch(`${this._baseUrl}/users/me`, {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify({
+                name: name,
+                about: about
+            })
+            }
+        )
+        .then(res => {
+            if (res.ok) {
+                return res.json();
+            }
 
+            return Promise.reject(`Ошибка: ${res.status}`);
+        }); 
     }
 
     postNewCard() {
