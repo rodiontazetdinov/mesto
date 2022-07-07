@@ -1,6 +1,6 @@
 'use strict';
 import './index.css';
-import {initialCards as items} from '../components/cards.js';
+// import {initialCards as items} from '../components/cards.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
@@ -21,8 +21,6 @@ const api = new Api({
 });
 
 
-
-
 const validationConfig = {
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__button',
@@ -35,7 +33,7 @@ export const userInfo = new UserInfo('.profile__person', '.profile__job');
 
 //экземляр класса отрисовки начальных карточек
 const cardSection = new Section({
-    items: items,
+    items: [],
     renderer: (item) => {
         return createCard(item);
     }
@@ -46,10 +44,23 @@ const cardForm = new PopupWithForm(
     '.popup_type_card-add',
     (evt) => {
         evt.preventDefault();
-        const item = cardForm.getInputValues();
-        const card = createCard(item);
-        cardSection.addItem(card);
-        cardForm.close();
+        cardForm.changeText('Сохранение...');
+        const cardValues = cardForm.getInputValues();
+        api.postNewCard(cardValues)
+        .then(cardData => {
+            const card = createCard(cardData);
+            cardSection.addItem(card);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+        .finally(() => {
+            cardForm.changeText('Сохранить');
+            cardForm.close();
+        });
+        // const card = createCard(cardValues);
+        // cardSection.addItem(card);
+        // cardForm.close();
     }
 );
 
@@ -71,14 +82,6 @@ const profileForm = new PopupWithForm(
             profileForm.changeText('Сохранить');
             profileForm.close();
         });
-        
-        
-        // const inputValues = profileForm.getInputValues();
-        //userInfo.setUserInfo(inputValues);
-        //profileForm.close();
-
-        //let sd = null;
-        
     }
 );
 
@@ -115,7 +118,6 @@ profileEditBtn.addEventListener('click', () => {
 });
 
 //заполняем начальные данные профиля
-// getProfile(api);
 api.getProfile()
         .then(data => {
             userInfo.setUserInfo(data);
@@ -129,5 +131,8 @@ popupEditProfileFormValidator.enableValidation();
 popupAddCardFormValidator.enableValidation();
 
 //отрисовываем начальные карточки
-cardSection.renderItems();
-  
+api.getInitialCards()
+        .then(data => {
+            cardSection.renderItems(data);
+        })
+        .catch(err => console.log(err));
