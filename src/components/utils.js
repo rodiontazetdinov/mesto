@@ -5,6 +5,7 @@ export function createCard (item) {
     const card = new Card(
         item.name,
         item.link,
+        item.likes.length,
         '#card',
         (evt) => {
             imagePopup.open(item.link, item.name);

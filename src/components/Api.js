@@ -31,8 +31,6 @@ export default class Api {
         });  
     }
 
-    
-    
     patchUserInfo({ name, about }) {
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'PATCH',

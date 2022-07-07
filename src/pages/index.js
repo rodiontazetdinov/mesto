@@ -48,6 +48,7 @@ const cardForm = new PopupWithForm(
         const cardValues = cardForm.getInputValues();
         api.postNewCard(cardValues)
         .then(cardData => {
+            console.log(cardData);
             const card = createCard(cardData);
             cardSection.addItem(card);
         })
