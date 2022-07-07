@@ -1,5 +1,5 @@
 export class Card {
-    constructor(title, url, likeCount, templateSelector, handleCardClick) {
+    constructor(title, url, likeCount, templateSelector, handleCardClick, handleDeleteClick) {
         this._title = title;
         this._url = url;
         this._likeCount = likeCount;
@@ -15,6 +15,7 @@ export class Card {
         this._likeCountElement = this._card.querySelector('.cards-list__like-counter');
 
         this._handleCardClick = handleCardClick;
+        this._handleDeleteClick = handleDeleteClick;
     }
 
     _setImageClickListener() {
@@ -22,9 +23,7 @@ export class Card {
     }
 
     _setTrashBtnListener() {
-        this._trashBtn.addEventListener('click', () => {
-            this.removeCard();
-        });
+        this._trashBtn.addEventListener('click', this._handleDeleteClick);
     }
 
     _setLikeBtnListener() {

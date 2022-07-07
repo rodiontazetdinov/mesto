@@ -1,6 +1,5 @@
 'use strict';
 import './index.css';
-// import {initialCards as items} from '../components/cards.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
@@ -59,9 +58,6 @@ const cardForm = new PopupWithForm(
             cardForm.changeText('Сохранить');
             cardForm.close();
         });
-        // const card = createCard(cardValues);
-        // cardSection.addItem(card);
-        // cardForm.close();
     }
 );
 
@@ -86,6 +82,15 @@ const profileForm = new PopupWithForm(
     }
 );
 
+export const deleteForm = new PopupWithForm(
+    '.popup_type_confirm',
+    (evt) => {
+        evt.preventDefault();
+        evt.preventDefault();
+        console.log('delete');
+    }
+);
+
 //формы для валидации
 const popupAddCardForm = document.querySelector('.popup_type_card-add .popup__form');
 const popupEditProfileForm = document.querySelector('.popup_type_profile-edit .popup__form');
@@ -99,6 +104,7 @@ const popupAddCardFormValidator = new FormValidator(validationConfig, popupAddCa
 //кнопки профиля и добавления карточек
 const profileEditBtn = document.querySelector('.profile__edit');
 const cardAddBtn = document.querySelector('.profile__add-button');
+// const cardRemoveBtn = document.querySelector('.profile__add-button');
 
 
 //обработчики
@@ -117,6 +123,10 @@ profileEditBtn.addEventListener('click', () => {
     profileForm.setInputValues(data);
     
 });
+
+// cardRemoveBtn.addEventListener('click', () => {
+
+// });
 
 //заполняем начальные данные профиля
 api.getProfile()

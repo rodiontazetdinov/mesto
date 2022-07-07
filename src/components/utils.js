@@ -1,5 +1,5 @@
 import {Card} from './Card.js';
-import { imagePopup, userInfo } from '../pages/index.js';
+import { imagePopup, userInfo, deleteForm } from '../pages/index.js';
 
 export function createCard (item) {
     const card = new Card(
@@ -9,6 +9,9 @@ export function createCard (item) {
         '#card',
         (evt) => {
             imagePopup.open(item.link, item.name);
+        },
+        (evt) => {
+            deleteForm.open();
         }
     ).formCard();
     return card;
