@@ -1,17 +1,15 @@
 import {Card} from './Card.js';
-import { imagePopup, userInfo, deleteForm } from '../pages/index.js';
+import { imagePopup, userInfo, confirmForm, api } from '../pages/index.js';
 
 export function createCard (item) {
     const card = new Card(
-        item.name,
-        item.link,
-        item.likes.length,
+        item,
         '#card',
         (evt) => {
             imagePopup.open(item.link, item.name);
         },
-        (evt) => {
-            deleteForm.open();
+        () => {
+            confirmForm.open();
         }
     ).formCard();
     return card;

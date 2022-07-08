@@ -14,6 +14,11 @@ export default class PopupWithForm extends Popup {
     changeText(text) {
         this._submitButton.textContent = text;
     } 
+
+    getNewSubmitter(newSubmitter) {
+        this._submitter = newSubmitter;
+    }
+
     getInputValues() {
         this._formValues = {};
         this._popupFormInputs.forEach(input => this._formValues[input.name] = input.value);

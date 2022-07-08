@@ -21,6 +21,7 @@
 @import url(../blocks/cards-list/__name/cards-list__name.css);
 @import url(../blocks/cards-list/__info/cards-list__info.css);
 @import url(../blocks/cards-list/__card-bin/cards-list__card-bin.css);
+@import url(../blocks/cards-list/__card-bin/_hidden/cards-list__card-bin_hidden.css);
 @import url(../blocks/cards-list/__like-counter/cards-list__like-counter.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);

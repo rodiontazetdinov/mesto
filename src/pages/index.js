@@ -8,6 +8,8 @@ import UserInfo from '../components/UserInfo.js';
 import {createCard, getProfile} from '../components/utils.js';
 import Api from '../components/Api.js';
 
+export let id = null;
+
 //попап демонстрации картинок
 export const imagePopup = new PopupWithImage('.popup_type_show-image');
 
@@ -82,11 +84,15 @@ const profileForm = new PopupWithForm(
     }
 );
 
-export const deleteForm = new PopupWithForm(
+export const confirmForm = new PopupWithForm(
     '.popup_type_confirm',
     (evt) => {
         evt.preventDefault();
-        evt.preventDefault();
+        api.deleteMyCard(id)
+        .then(res => console.log(res))
+        .catch(err => {
+            console.log(err);
+        });
         console.log('delete');
     }
 );

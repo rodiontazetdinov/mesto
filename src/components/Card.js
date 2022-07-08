@@ -1,18 +1,21 @@
 export class Card {
-    constructor(title, url, likeCount, templateSelector, handleCardClick, handleDeleteClick) {
-        this._title = title;
-        this._url = url;
-        this._likeCount = likeCount;
+    constructor( { name, link, likes, _id, owner }, templateSelector, handleCardClick, handleDeleteClick) {
+        this._name = name;
+        this._link = link;
+        this._likes = likes.length;
+        this._id = _id;
+        this._ownerId = owner._id;
+        this._myId = '34692a76014bc70f0f37cd65';
 
         this._card = document.querySelector(templateSelector)
         .content.querySelector('.cards-list__card-container')
         .cloneNode(true);
         
         this._image = this._card.querySelector('.cards-list__card-image');
-        this._subtitle = this._card.querySelector('.cards-list__name');
+        this._subname = this._card.querySelector('.cards-list__name');
         this._likeBtn = this._card.querySelector('.cards-list__like');
         this._trashBtn = this._card.querySelector('.cards-list__card-bin');
-        this._likeCountElement = this._card.querySelector('.cards-list__like-counter');
+        this._likesElement = this._card.querySelector('.cards-list__like-counter');
 
         this._handleCardClick = handleCardClick;
         this._handleDeleteClick = handleDeleteClick;
@@ -45,13 +48,21 @@ export class Card {
     removeCard() {
         this._card.remove();
         this._card = null;
-    } 
+    }
+    
+    _handleDeleteBtnState() {
+        if (this._ownerId !== this._myId) {
+            this._trashBtn.classList.add('cards-list__card-bin_hidden');
+            
+        }
+    }
 
     formCard() {
-        this._image.src = this._url;
-        this._subtitle.textContent = this._title;
-        this._image.alt = `Изображение места в ${this._title}`;
-        this._likeCountElement.textContent = this._likeCount;
+        this._image.src = this._link;
+        this._subname.textContent = this._name;
+        this._image.alt = `Изображение места в ${this._name}`;
+        this._likesElement.textContent = this._likes;
+        this._handleDeleteBtnState();
         this._setEventListeners();
 
         return this._card;
