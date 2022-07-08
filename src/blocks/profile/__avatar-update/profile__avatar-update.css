@@ -1,15 +1,17 @@
 .profile__avatar-update {
     background-color: transparent;
-    min-width: 120px;
+    /* min-width: 120px; */
+    width: 120px;
     height: 120px;
     margin: 40px auto 0;
     border: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-sizing: border-box;
+    box-sizing: content-box;
     padding: 0;
     position: relative;
+    /* border-radius: 50%; */
 }
 
 .profile__avatar-update::after {
@@ -28,12 +30,17 @@
     background-position: center;
     background-size: 27px 27px;
     cursor: pointer;
+    
   }
 
 @media screen and (min-width: 900px) {
     .profile__avatar-update {
         margin: 40px 0 0;
         padding-right: 30px;
+    }
+
+    .profile__avatar-update:hover::after {
+      background-position: 50px;
     }
 }
 
