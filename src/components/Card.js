@@ -1,8 +1,9 @@
 export class Card {
-    constructor( { name, link, likes, _id, owner }, templateSelector, handleCardClick, handleDeleteClick, handleLikeClick) {
+    constructor( { name, link, likes, _id, owner }, templateSelector, handleCardClick, handleDeleteClick, plusLikeClick, minusLikeClick, checkLikeClick) {
         this._name = name;
         this._link = link;
         this._likes = likes.length;
+        this._likesArr = likes;
         this._id = _id;
         this._ownerId = owner._id;
         this._myId = '34692a76014bc70f0f37cd65';
@@ -19,6 +20,8 @@ export class Card {
 
         this._handleCardClick = handleCardClick;
         this._handleDeleteClick = handleDeleteClick;
+        this._plusLikeClick = plusLikeClick;
+        this._minusLikeClick = minusLikeClick;
     }
 
     _setImageClickListener() {
@@ -34,6 +37,12 @@ export class Card {
     _setLikeBtnListener() {
         this._likeBtn.addEventListener('click', () => {
             this.toggleLikeBtn();
+            if (this._likeBtn.classList.contains('cards-list__like_active')) {
+                this._plusLikeClick(this._id);
+                
+            } else if (!this._likeBtn.classList.contains('cards-list__like_active')) {
+                this._minusLikeClick(this._id);
+            }
         });
     }
 
@@ -59,11 +68,25 @@ export class Card {
         }
     }
 
+    setLikes(likes) {
+        this._likes = likes.length;
+        this._likesElement.textContent = this._likes;
+    }
+
+    _checkLikes() {
+        this._likesArr.forEach((like) => {
+            if (like._id === this._myId) {
+                this._likeBtn.classList.add('cards-list__like_active');
+            }
+        });
+    }        
+
     formCard() {
         this._image.src = this._link;
         this._subname.textContent = this._name;
         this._image.alt = `Изображение места в ${this._name}`;
         this._likesElement.textContent = this._likes;
+        this._checkLikes();
         this._handleDeleteBtnState();
         this._setEventListeners();
 

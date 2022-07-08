@@ -1,6 +1,6 @@
 import {Card} from './Card.js';
 import { imagePopup, api, confirmForm } from '../pages/index.js';
-//
+
 export function createCard (item) {
     const card = new Card(
         item,
@@ -11,8 +11,6 @@ export function createCard (item) {
         (id) => {
             confirmForm.open();
             confirmForm.getNewSubmitter(() => {
-                
-                
                 api.removeMyCard(id)
                 .then(res => {
                     card.removeCard();
@@ -23,7 +21,25 @@ export function createCard (item) {
                 });
             });
 
-        })
+        },
+        (id) => {  
+            api.increaseLike(id, item.likes)
+            .then(res => {
+                card.setLikes(res.likes);
+            })
+            .catch(err => {
+            });
+        },
+        (id) => {  
+            api.decreaseLike(id)
+            .then(res => {
+                card.setLikes(res.likes);
+                
+            })
+            .catch(err => {
+                console.log(err);
+            });
+        });
     
-    return card.formCard();
+    return card.formCard();   
 }

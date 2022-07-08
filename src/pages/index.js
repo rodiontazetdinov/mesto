@@ -43,8 +43,6 @@ const cardSection = new Section({
 const cardForm = new PopupWithForm(
     '.popup_type_card-add',
     () => {
-        //debugger;
-        //evt.preventDefault();
         cardForm.changeText('Сохранение...');
         const cardValues = cardForm.getInputValues();
         api.postNewCard(cardValues)

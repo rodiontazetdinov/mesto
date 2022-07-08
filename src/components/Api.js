@@ -83,10 +83,14 @@ export default class Api {
             });    
     }
 
-    increaseLike(id) {
-        return fetch(`${this._baseUrl}/cards/${id}`, {
+    increaseLike(id, likes) {
+        return fetch(`${this._baseUrl}/cards/${id}/likes`, {
             method: 'PUT',
             headers: this._headers,
+            body: JSON.stringify({
+                likes: likes,
+
+            })
             })
             .then(res => {
                 if (res.ok) {
@@ -98,7 +102,7 @@ export default class Api {
     }
 
     decreaseLike(id) {
-        return fetch(`${this._baseUrl}/cards/${id}`, {
+        return fetch(`${this._baseUrl}/cards/${id}/likes`, {
             method: 'DELETE',
             headers: this._headers,
             })
@@ -110,6 +114,7 @@ export default class Api {
                 return Promise.reject(`Ошибка: ${res.status}`);
             });
     }
+    
 
     setAvatar() {
 
