@@ -1,5 +1,5 @@
 export class Card {
-    constructor( { name, link, likes, _id, owner }, templateSelector, handleCardClick, handleDeleteClick) {
+    constructor( { name, link, likes, _id, owner }, templateSelector, handleCardClick, handleDeleteClick, handleLikeClick) {
         this._name = name;
         this._link = link;
         this._likes = likes.length;
@@ -26,7 +26,9 @@ export class Card {
     }
 
     _setTrashBtnListener() {
-        this._trashBtn.addEventListener('click', this._handleDeleteClick);
+        this._trashBtn.addEventListener('click', () => {
+            this._handleDeleteClick(this._id);
+        });
     }
 
     _setLikeBtnListener() {

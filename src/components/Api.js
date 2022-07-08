@@ -70,7 +70,7 @@ export default class Api {
     }
 
     removeMyCard(id) {
-        return fetch(`${this._baseUrl}/cards${id}`, {
+        return fetch(`${this._baseUrl}/cards/${id}`, {
             method: 'DELETE',
             headers: this._headers,
             })
@@ -83,12 +83,32 @@ export default class Api {
             });    
     }
 
-    increaseLike() {
-
+    increaseLike(id) {
+        return fetch(`${this._baseUrl}/cards/${id}`, {
+            method: 'PUT',
+            headers: this._headers,
+            })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+    
+                return Promise.reject(`Ошибка: ${res.status}`);
+            });
     }
 
-    decreaseLike() {
-
+    decreaseLike(id) {
+        return fetch(`${this._baseUrl}/cards/${id}`, {
+            method: 'DELETE',
+            headers: this._headers,
+            })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+    
+                return Promise.reject(`Ошибка: ${res.status}`);
+            });
     }
 
     setAvatar() {
