@@ -442,16 +442,69 @@ template {
     }
 }
 .profile__avatar {
-    margin: 40px auto 0;
     display: block;
+    width: 120px;
+    height: 100%;
+    border-radius: 100%;
+    object-fit: cover;
 }
 
+.profile__avatar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: rgba(0,0,0,0.5);
+}
+.profile__avatar-update {
+    background-color: transparent;
+    /* min-width: 120px; */
+    width: 120px;
+    height: 120px;
+    margin: 40px auto 0;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: content-box;
+    padding: 0;
+    position: relative;
+    /* border-radius: 50%; */
+}
+
+.profile__avatar-update::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .profile__avatar-update:hover::after {
+    background-color: rgb(0 0 0 / 0.8);
+    background-image: url(6c7bf05444b9793fdf6e.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 27px 27px;
+    cursor: pointer;
+    
+  }
+
 @media screen and (min-width: 900px) {
-    .profile__avatar {
+    .profile__avatar-update {
         margin: 40px 0 0;
         padding-right: 30px;
     }
+
+    .profile__avatar-update:hover::after {
+      background-position: 50px;
+    }
 }
+
+
 .profile__person {
     display: inline;
     font-style: normal;
@@ -645,6 +698,10 @@ template {
 .cards-list__card-image:hover {
     cursor: pointer;
 }
+.cards-list__like-container {
+    width: 22px;
+    height: 35px;
+}
 .cards-list__like {
     background-color: transparent;
     background-image: url(1ad06e85f169668a1f36.svg);
@@ -693,6 +750,15 @@ template {
 .cards-list__card-bin:hover {
     opacity: 0.6;
     cursor: pointer;
+}
+.cards-list__card-bin_hidden {
+    visibility: hidden;
+}
+.cards-list__like-counter {
+    color: #000;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
 }
 .footer {
     margin-top: 20px;
@@ -799,6 +865,12 @@ template {
     }
 }
 
+.popup__title_type_confirm {
+    margin-bottom: 0px;
+}
+.popup__title_type_avatar-save {
+    margin-bottom: 54px;
+}
 .popup__input {
     font-style: normal;
     font-weight: 500;
