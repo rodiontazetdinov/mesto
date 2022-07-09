@@ -17,18 +17,14 @@ export default class Api {
         return fetch(`${this._baseUrl}/cards`, {
             headers: this._headers
         })
-        .then(res => {
-            return this._checkResponse(res);
-        });
+        .then(res => this._checkResponse(res)); 
     }
 
     getProfile() {
         return fetch(`${this._baseUrl}/users/me`, {
             headers: this._headers
         })
-        .then(res => {
-            return this._checkResponse(res);
-        });  
+        .then(res => this._checkResponse(res)); 
     }
 
     patchUserInfo({ name, about }) {
@@ -41,9 +37,7 @@ export default class Api {
             })
             }
         )
-        .then(res => {
-            return this._checkResponse(res);
-        }); 
+        .then(res => this._checkResponse(res)); 
     }
 
     postNewCard({ name, link }) {
@@ -56,9 +50,7 @@ export default class Api {
             })
             }
         )
-        .then(res => {
-            return this._checkResponse(res);
-        }); 
+        .then(res => this._checkResponse(res)); 
     }
 
     removeMyCard(id) {
@@ -66,9 +58,7 @@ export default class Api {
             method: 'DELETE',
             headers: this._headers,
             })
-            .then(res => {
-                return this._checkResponse(res);
-            });    
+            .then(res => this._checkResponse(res));   
     }
 
     increaseLike(id, likes) {
@@ -80,9 +70,7 @@ export default class Api {
 
             })
             })
-            .then(res => {
-                return this._checkResponse(res);
-            });
+            .then(res => this._checkResponse(res)); 
     }
 
     decreaseLike(id) {
@@ -90,9 +78,7 @@ export default class Api {
             method: 'DELETE',
             headers: this._headers,
             })
-            .then(res => {
-                return this._checkResponse(res);
-            });
+            .then(res => this._checkResponse(res)); 
     }
     
 
@@ -105,8 +91,6 @@ export default class Api {
             })
             }
         )
-        .then(res => {
-            return this._checkResponse(res);
-        }); 
+        .then(res => this._checkResponse(res)); 
     }
 }
