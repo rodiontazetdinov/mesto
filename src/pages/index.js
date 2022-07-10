@@ -12,6 +12,7 @@ import Api from '../components/Api.js';
 //попап демонстрации картинок
 export const imagePopup = new PopupWithImage('.popup_type_show-image');
 
+//API
 export const api = new Api({
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-44',
     headers: {
@@ -29,7 +30,7 @@ const validationConfig = {
 };
 
 //экземляр класса управления данными профиля
-const userInfo = new UserInfo('.profile__person', '.profile__job', '.profile__avatar');
+export const userInfo = new UserInfo('.profile__person', '.profile__job', '.profile__avatar');
 
 //экземляр класса отрисовки начальных карточек
 const cardSection = new Section({
@@ -81,6 +82,7 @@ const profileForm = new PopupWithForm(
     }
 );
 
+//попап изменения аватара
 const avatarForm = new PopupWithForm(
     '.popup_type_avatar-save',
     (evt) => {
@@ -101,6 +103,7 @@ const avatarForm = new PopupWithForm(
     }
 );
 
+//попап подтверждения удаления карточкчи
 export const confirmForm = new PopupWithForm('.popup_type_confirm');
 
 //формы для валидации
@@ -152,6 +155,7 @@ api.getProfile()
         .then(data => {
             userInfo.setUserInfo(data);
             userInfo.setAvatarSrc(data);
+            userInfo.setUserId(data);
         })
         .catch(err => {
             console.log(err);

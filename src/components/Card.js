@@ -1,12 +1,12 @@
 export class Card {
-    constructor( { name, link, likes, _id, owner }, templateSelector, handleCardClick, handleDeleteClick, plusLikeClick, minusLikeClick) {
+    constructor( { name, link, likes, _id, owner }, templateSelector, _myId, handleCardClick, handleDeleteClick, plusLikeClick, minusLikeClick) {
         this._name = name;
         this._link = link;
         this._likes = likes.length;
         this._likesArr = likes;
         this._id = _id;
         this._ownerId = owner._id;
-        this._myId = '34692a76014bc70f0f37cd65';
+        this._myId = _myId;
 
         this._card = document.querySelector(templateSelector)
         .content.querySelector('.cards-list__card-container')

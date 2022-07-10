@@ -22,4 +22,12 @@ export default class UserInfo {
         this._avatar.src = avatar;
     }
 
+    getUserId() {
+        return this._id;
+    }
+
+    setUserId( { _id } ) {
+        this._id = _id;
+    }
+
 }

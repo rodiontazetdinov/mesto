@@ -1,10 +1,11 @@
 import {Card} from './Card.js';
-import { imagePopup, api, confirmForm } from '../pages/index.js';
+import { imagePopup, api, confirmForm, userInfo } from '../pages/index.js';
 
 export function createCard (item) {
     const card = new Card(
         item,
         '#card',
+        userInfo.getUserId(),
         (evt) => {
             imagePopup.open(item.link, item.name);
         },
