@@ -1,5 +1,5 @@
 import {Card} from '../components/Card.js';
-import {userInfo, imagePopup, confirmForm, api} from './constants.js';
+import {userInfo, imagePopup, confirmPopup, api} from './constants.js';
 
 
 //функция создания карточки
@@ -12,12 +12,12 @@ export function createCard (item) {
             imagePopup.open(item.link, item.name);
         },
         (id) => {
-            confirmForm.open();
-            confirmForm.getNewSubmitter(() => {
+            confirmPopup.open();
+            confirmPopup.getSubmitter(() => {
                 api.removeMyCard(id)
                 .then(res => {
                     card.removeCard();
-                    confirmForm.close();
+                    confirmPopup.close();
                 })
                 .catch(err => {
                     console.log(err);

@@ -1,4 +1,5 @@
 import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithConfirm from '../components/PopupWithConfirm.js';
 import Api from '../components/Api.js';
 import UserInfo from '../components/UserInfo.js';
 import Section from '../components/Section.js';
@@ -97,7 +98,7 @@ export const avatarForm = new PopupWithForm(
 );
 
 //попап подтверждения удаления карточкчи
-export const confirmForm = new PopupWithForm('.popup_type_confirm');
+export const confirmPopup = new PopupWithConfirm('.popup_type_confirm');
 
 //конфиг для создания экземпляра валидации
 export const validationConfig = {

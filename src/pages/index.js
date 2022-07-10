@@ -7,7 +7,7 @@ import {
     cardSection,
     profileForm,
     cardForm,
-    confirmForm,
+    confirmPopup,
     avatarForm,
     cardAddBtn,
     popupAddCardFormValidator,
@@ -22,7 +22,7 @@ import {
 imagePopup.setEventListeners();
 profileForm.setEventListeners();
 cardForm.setEventListeners();
-confirmForm.setEventListeners();
+confirmPopup.setEventListeners();
 avatarForm.setEventListeners();
 
 cardAddBtn.addEventListener('click', () => {
