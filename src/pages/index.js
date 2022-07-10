@@ -44,25 +44,37 @@ avatarBtn.addEventListener('click', () => {
 
 
 //заполняем начальные данные профиля
-api.getProfile()
-        .then(data => {
-            userInfo.setUserInfo(data);
-            userInfo.setAvatarSrc(data);
-            userInfo.setUserId(data);
-        })
-        .catch(err => {
-            console.log(err);
-        });
+// api.getProfile()
+//         .then(data => {
+//             userInfo.setUserInfo(data);
+//             userInfo.setAvatarSrc(data);
+//             userInfo.setUserId(data);
+//         })
+//         .catch(err => {
+//             console.log(err);
+//         });
 
-//включаем валидацию
-popupEditProfileFormValidator.enableValidation();
-popupAddCardFormValidator.enableValidation();
-popupEditAvatarFormValidator.enableValidation();
+// //включаем валидацию
+// popupEditProfileFormValidator.enableValidation();
+// popupAddCardFormValidator.enableValidation();
+// popupEditAvatarFormValidator.enableValidation();
 
 
-//отрисовываем начальные карточки
-api.getInitialCards()
-        .then(data => {
-            cardSection.renderItems(data);
-        })
-        .catch(err => console.log(err));
+// //отрисовываем начальные карточки
+// api.getInitialCards()
+//         .then(data => {
+//             cardSection.renderItems(data);
+//         })
+//         .catch(err => console.log(err));
+
+Promise.all([api.getProfile(), api.getInitialCards()])
+    .then(([userData, cards]) => {
+        userInfo.setUserInfo(userData);
+        userInfo.setAvatarSrc(userData);
+        userInfo.setUserId(userData);
+
+        cardSection.renderItems(cards);
+    })
+    .catch(err => {
+    console.log(err);
+    });
