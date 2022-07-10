@@ -27,15 +27,17 @@ export function createCard (item) {
             api.increaseLike(id, item.likes)
             .then(res => {
                 card.setLikes(res.likes);
+                card.toggleLikeBtn();
             })
             .catch(err => {
+                console.log(err);
             });
         },
         (id) => {  
             api.decreaseLike(id)
             .then(res => {
                 card.setLikes(res.likes);
-                
+                card.toggleLikeBtn();
             })
             .catch(err => {
                 console.log(err);

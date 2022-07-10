@@ -36,11 +36,10 @@ export class Card {
 
     _setLikeBtnListener() {
         this._likeBtn.addEventListener('click', () => {
-            this.toggleLikeBtn();
-            if (this._likeBtn.classList.contains('cards-list__like_active')) {
+            if (!this._likeBtn.classList.contains('cards-list__like_active')) {
                 this._plusLikeClick(this._id);
                 
-            } else if (!this._likeBtn.classList.contains('cards-list__like_active')) {
+            } else if (this._likeBtn.classList.contains('cards-list__like_active')) {
                 this._minusLikeClick(this._id);
             }
         });
@@ -64,7 +63,6 @@ export class Card {
     _handleDeleteBtnState() {
         if (this._ownerId !== this._myId) {
             this._trashBtn.classList.add('cards-list__card-bin_hidden');
-            
         }
     }
 
