@@ -1,6 +1,6 @@
 import Popup from './Popup.js';
 
-export default class PopupWithConfirm extends Popup {
+export  class PopupWithConfirm extends Popup {
     constructor(popupSelector) {
         super(popupSelector);
         
@@ -14,6 +14,7 @@ export default class PopupWithConfirm extends Popup {
     setEventListeners() {
         super.setEventListeners();
         this._submitButton.addEventListener('click', () => {
+            console.log('Da');
             this._submitter();
         }
         );

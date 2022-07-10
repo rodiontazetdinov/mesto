@@ -1,5 +1,5 @@
 import PopupWithImage from '../components/PopupWithImage.js';
-import PopupWithConfirm from '../components/PopupWithConfirm.js';
+import {PopupWithConfirm} from '../components/PopupWithConfirm.js';
 import Api from '../components/Api.js';
 import UserInfo from '../components/UserInfo.js';
 import Section from '../components/Section.js';
