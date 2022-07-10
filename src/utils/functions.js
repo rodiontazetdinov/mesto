@@ -1,6 +1,8 @@
-import {Card} from './Card.js';
-import { imagePopup, api, confirmForm, userInfo } from '../pages/index.js';
+import {Card} from '../components/Card.js';
+import {userInfo, imagePopup, confirmForm, api} from './constants.js';
 
+
+//функция создания карточки
 export function createCard (item) {
     const card = new Card(
         item,
