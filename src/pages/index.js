@@ -27,7 +27,7 @@ avatarForm.setEventListeners();
 
 cardAddBtn.addEventListener('click', () => {
     cardForm.open();
-    popupAddCardFormValidator.disableBtn();
+    popupAddCardFormValidator.resetValidation();
 });
 
 profileEditBtn.addEventListener('click', () => {
@@ -39,34 +39,16 @@ profileEditBtn.addEventListener('click', () => {
 
 avatarBtn.addEventListener('click', () => {
     avatarForm.open();
-    popupEditAvatarFormValidator.disableBtn();
+    popupEditAvatarFormValidator.resetValidation();
 });
 
 
-//заполняем начальные данные профиля
-// api.getProfile()
-//         .then(data => {
-//             userInfo.setUserInfo(data);
-//             userInfo.setAvatarSrc(data);
-//             userInfo.setUserId(data);
-//         })
-//         .catch(err => {
-//             console.log(err);
-//         });
+//включаем валидацию
+popupEditProfileFormValidator.enableValidation();
+popupAddCardFormValidator.enableValidation();
+popupEditAvatarFormValidator.enableValidation();
 
-// //включаем валидацию
-// popupEditProfileFormValidator.enableValidation();
-// popupAddCardFormValidator.enableValidation();
-// popupEditAvatarFormValidator.enableValidation();
-
-
-// //отрисовываем начальные карточки
-// api.getInitialCards()
-//         .then(data => {
-//             cardSection.renderItems(data);
-//         })
-//         .catch(err => console.log(err));
-
+//Получаем данные пользователя и карточек с сервера
 Promise.all([api.getProfile(), api.getInitialCards()])
     .then(([userData, cards]) => {
         userInfo.setUserInfo(userData);

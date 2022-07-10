@@ -26,35 +26,35 @@ export default class FormValidator {
         
     }
 
-    _showInputError (evt) {
-        const errorElement = document.querySelector(`#${evt.target.id}-error`);
-        errorElement.textContent = evt.target.validationMessage;
-        evt.target.classList.add(this._inputErrorClass);
+    _showInputError (input) {
+        const errorElement = document.querySelector(`#${input.id}-error`);
+        errorElement.textContent = input.validationMessage;
+        input.classList.add(this._inputErrorClass);
         this.disableBtn();
     }
     
-    _hideInputError (evt) {
-        const errorElement = document.querySelector(`#${evt.target.id}-error`);
+    _hideInputError (input) {
+        const errorElement = document.querySelector(`#${input.id}-error`);
         errorElement.textContent = '';
-        evt.target.classList.remove(this._inputErrorClass);
+        input.classList.remove(this._inputErrorClass);
         if (this._isValid()) {
             this._activateBtn();
         }
     }
 
-    _handleInput (evt) {
-        if (evt.target.validity.valid) {
-            this._hideInputError(evt);
+    _handleInput (input) {
+        if (input.validity.valid) {
+            this._hideInputError(input);
         }
-        if (!evt.target.validity.valid) {
-            this._showInputError(evt);
+        if (!input.validity.valid) {
+            this._showInputError(input);
         }
     }
 
     _setValidation () {
         this._inputList.forEach((input) => {
-            input.addEventListener('input', (evt) => {
-                this._handleInput(evt);
+            input.addEventListener('input', () => {
+                this._handleInput(input);
             });   
         });
     }
@@ -62,4 +62,12 @@ export default class FormValidator {
     enableValidation() {
         this._setValidation();
     }
+
+    resetValidation() {
+        this.disableBtn();
+        this._inputList.forEach((input) => {
+            
+            this._hideInputError(input);
+        });
+      }
 }
